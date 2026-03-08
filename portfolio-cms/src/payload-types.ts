@@ -70,6 +70,7 @@ export interface Config {
     users: User;
     media: Media;
     'case-studies': CaseStudy;
+    'category-galleries': CategoryGallery;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -80,6 +81,7 @@ export interface Config {
     users: UsersSelect<false> | UsersSelect<true>;
     media: MediaSelect<false> | MediaSelect<true>;
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
+    'category-galleries': CategoryGalleriesSelect<false> | CategoryGalleriesSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -208,6 +210,38 @@ export interface CaseStudy {
 }
 /**
  * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "category-galleries".
+ */
+export interface CategoryGallery {
+  id: number;
+  /**
+   * Internal title for this gallery, e.g. "Real Estate — Spring 2025"
+   */
+  title: string;
+  category: 'real-estate' | 'concert' | 'brand-media';
+  /**
+   * Optional description shown with the gallery.
+   */
+  description?: string | null;
+  photos: {
+    image: number | Media;
+    /**
+     * Optional caption for this photo.
+     */
+    caption?: string | null;
+    /**
+     * Feature this photo at the top of the gallery.
+     */
+    featured?: boolean | null;
+    id?: string | null;
+  }[];
+  publishedAt?: string | null;
+  status: 'draft' | 'published';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
  * via the `definition` "payload-kv".
  */
 export interface PayloadKv {
@@ -241,6 +275,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'case-studies';
         value: number | CaseStudy;
+      } | null)
+    | ({
+        relationTo: 'category-galleries';
+        value: number | CategoryGallery;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -339,6 +377,27 @@ export interface CaseStudiesSelect<T extends boolean = true> {
     | T
     | {
         tag?: T;
+        id?: T;
+      };
+  publishedAt?: T;
+  status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "category-galleries_select".
+ */
+export interface CategoryGalleriesSelect<T extends boolean = true> {
+  title?: T;
+  category?: T;
+  description?: T;
+  photos?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        featured?: T;
         id?: T;
       };
   publishedAt?: T;

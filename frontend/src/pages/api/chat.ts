@@ -13,6 +13,10 @@ const promptId =
 	process.env.OPENAI_PROMPT_ID ||
 	"pmpt_69ad93fdd8dc81968072a8348e8bc82703bf8c25a5bd3111";
 
+const promptVersion =
+	process.env.OPENAI_PROMPT_VERSION ||
+	"pmptver_9b1c8e5a7c0d2f1a2b3c4d5e6f78901234567890abcdef12";
+
 export const POST: APIRoute = async ({ request }) => {
 	try {
 		const { message } = await request.json();
@@ -27,7 +31,7 @@ export const POST: APIRoute = async ({ request }) => {
 		const response = await openai.responses.create({
 			prompt: {
 				id: promptId,
-				version: "4",
+				version: promptVersion,
 			},
 			input: message,
 		});

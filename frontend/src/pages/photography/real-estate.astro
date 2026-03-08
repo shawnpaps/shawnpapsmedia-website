@@ -1,0 +1,200 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+	<div class="bg-white text-gray-900 min-h-screen">
+		<!-- Hero -->
+		<section
+			class="relative flex flex-col justify-end min-h-[80vh] px-20 py-24 overflow-hidden bg-[#f5f5f3]"
+		>
+			<div
+				class="absolute inset-0 bg-[linear-gradient(to_bottom,_transparent_40%,_#f5f5f3_100%)] z-10"
+			>
+			</div>
+			<!-- Placeholder hero image -->
+			<div class="absolute inset-0 bg-[#d9d9d6]">
+				<img
+					src="https://placehold.co/1600x900/d9d9d6/aaaaaa?text=."
+					alt=""
+					class="w-full h-full object-cover opacity-60"
+				/>
+			</div>
+
+			<div class="relative z-20 max-w-3xl">
+				<span
+					class="text-xs font-medium text-gray-400 uppercase tracking-widest mb-4 block"
+				>
+					Photography — Real Estate
+				</span>
+				<h1
+					class="text-7xl font-semibold leading-none text-gray-900 mb-6"
+				>
+					Every space,<br />at its best.
+				</h1>
+				<p
+					class="text-xl font-light text-gray-500 max-w-xl leading-relaxed"
+				>
+					Architecture and interiors photographed with precision and
+					intention — built to sell, impress, and endure.
+				</p>
+			</div>
+		</section>
+
+		<!-- Intro -->
+		<section
+			class="px-20 py-24 flex flex-row items-start justify-between gap-20 border-b border-gray-100"
+		>
+			<div class="max-w-sm shrink-0">
+				<h2 class="text-4xl font-semibold text-gray-900 leading-tight">
+					Light, space,<br />and detail.
+				</h2>
+			</div>
+			<div class="flex flex-col gap-6 max-w-xl">
+				<p class="text-lg font-light text-gray-500 leading-relaxed">
+					Real estate photography is about more than showing a room —
+					it's about making someone feel at home before they ever walk
+					through the door. I work with realtors, developers, and
+					interior designers to capture spaces that feel honest,
+					inviting, and refined.
+				</p>
+				<p class="text-lg font-light text-gray-500 leading-relaxed">
+					Every shoot is approached with an eye for natural light,
+					clean lines, and the details that make a property worth
+					remembering.
+				</p>
+			</div>
+		</section>
+
+		<!-- Photo grid -->
+		<section class="px-20 py-24">
+			<div class="grid grid-cols-12 gap-4 auto-rows-[280px]">
+				<div
+					class="col-span-8 row-span-2 rounded-xl overflow-hidden bg-[#e8e8e4]"
+				>
+					<img
+						src="https://placehold.co/900x560/e8e8e4/bbbbbb?text=."
+						alt=""
+						class="w-full h-full object-cover"
+					/>
+				</div>
+				<div class="col-span-4 rounded-xl overflow-hidden bg-[#d9d9d6]">
+					<img
+						src="https://placehold.co/400x280/d9d9d6/aaaaaa?text=."
+						alt=""
+						class="w-full h-full object-cover"
+					/>
+				</div>
+				<div class="col-span-4 rounded-xl overflow-hidden bg-[#e2e2de]">
+					<img
+						src="https://placehold.co/400x280/e2e2de/b5b5b5?text=."
+						alt=""
+						class="w-full h-full object-cover"
+					/>
+				</div>
+				<div class="col-span-4 rounded-xl overflow-hidden bg-[#d9d9d6]">
+					<img
+						src="https://placehold.co/400x280/d9d9d6/aaaaaa?text=."
+						alt=""
+						class="w-full h-full object-cover"
+					/>
+				</div>
+				<div class="col-span-4 rounded-xl overflow-hidden bg-[#e8e8e4]">
+					<img
+						src="https://placehold.co/400x280/e8e8e4/bbbbbb?text=."
+						alt=""
+						class="w-full h-full object-cover"
+					/>
+				</div>
+				<div class="col-span-4 rounded-xl overflow-hidden bg-[#e2e2de]">
+					<img
+						src="https://placehold.co/400x280/e2e2de/b5b5b5?text=."
+						alt=""
+						class="w-full h-full object-cover"
+					/>
+				</div>
+			</div>
+		</section>
+
+		<!-- Services -->
+		<section class="px-20 py-24 bg-[#f5f5f3] border-t border-gray-100">
+			<div class="flex flex-col gap-12">
+				<div class="flex flex-col gap-2">
+					<span
+						class="text-xs font-medium text-gray-400 uppercase tracking-widest"
+						>What's included</span
+					>
+					<h2 class="text-4xl font-semibold text-gray-900">
+						Services
+					</h2>
+				</div>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+					{
+						[
+							{
+								title: "Interior & Exterior",
+								desc: "Full property coverage — every room, every angle, inside and out.",
+							},
+							{
+								title: "Twilight Shoots",
+								desc: "Golden hour and blue hour photography that makes properties unforgettable.",
+							},
+							{
+								title: "HDR Processing",
+								desc: "High dynamic range editing that balances light naturally without looking over-processed.",
+							},
+							{
+								title: "Aerial / Drone",
+								desc: "FAA-certified drone coverage for lot size, landscaping, and neighborhood context.",
+							},
+							{
+								title: "Virtual Staging",
+								desc: "Empty space? No problem. Digital furnishing that helps buyers visualize.",
+							},
+							{
+								title: "Same-Day Delivery",
+								desc: "Rush turnaround available when listings can't wait.",
+							},
+						].map((s) => (
+							<div class="flex flex-col gap-3 p-8 bg-white rounded-2xl border border-gray-100 shadow-sm">
+								<h3 class="text-base font-semibold text-gray-900">
+									{s.title}
+								</h3>
+								<p class="text-sm font-light text-gray-500 leading-relaxed">
+									{s.desc}
+								</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA -->
+		<section
+			class="px-20 py-32 flex flex-col items-center text-center gap-6 border-t border-gray-100"
+		>
+			<span
+				class="text-xs font-medium text-gray-400 uppercase tracking-widest"
+				>Book a shoot</span
+			>
+			<h2
+				class="text-5xl font-semibold text-gray-900 max-w-xl leading-tight"
+			>
+				Ready to show your property at its best?
+			</h2>
+			<p
+				class="text-lg font-light text-gray-500 max-w-md leading-relaxed"
+			>
+				Let's talk about your listing, your timeline, and what you need
+				to close faster.
+			</p>
+			<a
+				href="/contact"
+				class="mt-4 px-8 py-4 rounded-full bg-gray-900 text-white text-sm font-medium hover:bg-gray-700 transition-colors duration-200"
+			>
+				Get in touch
+			</a>
+		</section>
+	</div>
+</BaseLayout>

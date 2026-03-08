@@ -3,70 +3,143 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 import MCPBot from "../components/react/mcp-bot.tsx";
 import WorkShowcase from "../components/WorkShowcase.astro";
 import BadgeContainer from "../components/BadgeContainer.astro";
-const workItems = [
-	{
-		title: "Example Project One",
-		client: "Client A",
-		summary:
-			"A brief overview of what this project involved, what problems were solved, and what was delivered.",
-		coverImage: "https://placehold.co/288x192",
-		slug: "example-project-one",
-	},
-	{
-		title: "Example Project Two",
-		client: "Client B",
-		summary:
-			"A brief overview of what this project involved, what problems were solved, and what was delivered.",
-		coverImage: "https://placehold.co/288x192",
-		slug: "example-project-two",
-	},
-	{
-		title: "Example Project Three",
-		client: "Client C",
-		summary:
-			"A brief overview of what this project involved, what problems were solved, and what was delivered.",
-		coverImage: "https://placehold.co/288x192",
-		slug: "example-project-three",
-	},
-	{
-		title: "Example Project Four",
-		client: "Client D",
-		summary:
-			"A brief overview of what this project involved, what problems were solved, and what was delivered.",
-		coverImage: "https://placehold.co/288x192",
-		slug: "example-project-four",
-	},
-	{
-		title: "Example Project Five",
-		client: "Client E",
-		summary:
-			"A brief overview of what this project involved, what problems were solved, and what was delivered.",
-		coverImage: "https://placehold.co/288x192",
-		slug: "example-project-five",
-	},
-];
+import PhotoMarquee from "../components/PhotoMarquee.astro";
+import ServicesPreview from "../components/react/ServicesPreview.tsx";
+
+const CMS_BASE = import.meta.env.PUBLIC_CMS_BASE;
+console.log("[index.astro] CMS_BASE =", CMS_BASE);
+
+let marqueePhotos: {
+	url: string;
+	alt: string;
+	width: number;
+	height: number;
+}[] = [];
+
+interface WorkItem {
+	title: string;
+	client: string;
+	summary: string;
+	coverImage: string;
+	slug: string;
+}
+
+let workItems: WorkItem[] = [];
+
+try {
+	const mediaRes = await fetch(`${CMS_BASE}/api/media?limit=100&depth=0`);
+	const mediaData = await mediaRes.json();
+	marqueePhotos = (mediaData?.docs ?? [])
+		.filter((d: any) => d.mimeType?.startsWith("image/"))
+		.map((d: any) => ({
+			url: d.url,
+			alt: d.alt ?? "",
+			width: d.width,
+			height: d.height,
+		}));
+	console.log("[index.astro] marqueePhotos fetched:", marqueePhotos.length);
+} catch (e) {
+	console.error("Failed to fetch media for marquee:", e);
+}
+
+try {
+	const workRes = await fetch(
+		`${CMS_BASE}/api/case-studies?limit=20&depth=1`,
+	);
+	const workData = await workRes.json();
+	workItems = (workData?.docs ?? []).map((d: any) => ({
+		title: d.title ?? "Untitled",
+		client: d.client ?? "",
+		summary: d.summary ?? "",
+		coverImage: d.coverImage?.url
+			? `${CMS_BASE}${d.coverImage.url}`
+			: "https://placehold.co/288x192",
+		slug: d.slug ?? d.id,
+	}));
+} catch (e) {
+	console.error("Failed to fetch case studies:", e);
+}
+
+// Fallback work items if CMS fetch returns nothing
+if (workItems.length === 0) {
+	workItems = [
+		{
+			title: "Example Project One",
+			client: "Client A",
+			summary:
+				"A brief overview of what this project involved, what problems were solved, and what was delivered.",
+			coverImage: "https://placehold.co/288x192",
+			slug: "example-project-one",
+		},
+		{
+			title: "Example Project Two",
+			client: "Client B",
+			summary:
+				"A brief overview of what this project involved, what problems were solved, and what was delivered.",
+			coverImage: "https://placehold.co/288x192",
+			slug: "example-project-two",
+		},
+		{
+			title: "Example Project Three",
+			client: "Client C",
+			summary:
+				"A brief overview of what this project involved, what problems were solved, and what was delivered.",
+			coverImage: "https://placehold.co/288x192",
+			slug: "example-project-three",
+		},
+		{
+			title: "Example Project Four",
+			client: "Client D",
+			summary:
+				"A brief overview of what this project involved, what problems were solved, and what was delivered.",
+			coverImage: "https://placehold.co/288x192",
+			slug: "example-project-four",
+		},
+		{
+			title: "Example Project Five",
+			client: "Client E",
+			summary:
+				"A brief overview of what this project involved, what problems were solved, and what was delivered.",
+			coverImage: "https://placehold.co/288x192",
+			slug: "example-project-five",
+		},
+	];
+}
 ---
 
 <BaseLayout>
-	<main class="flex flex-col items-center min-h-screen gap-8 p-20">
+	<main class="flex flex-col items-center min-h-screen">
+		<!-- Hero -->
 		<section
-			class="flex flex-row items-center justify-between gap-8 w-full"
+			class="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-10 w-full px-6 sm:px-12 lg:px-20 pt-16 pb-20"
 		>
-			<div class="flex flex-row items-center gap-8">
-				<div class="w-64 h-64 rounded-full overflow-hidden">
+			<div
+				class="flex flex-col sm:flex-row items-center sm:items-start gap-8"
+			>
+				<div
+					class="w-48 h-48 sm:w-64 sm:h-64 rounded-full overflow-hidden shrink-0"
+				>
 					<img
 						class="w-full h-full object-cover"
-						src="http://192.168.4.62:3000/api/media/file/shawn_computer"
+						src={`${CMS_BASE}/api/media/file/shawn-camera`}
+						alt="Shawn Papineau — photographer,
+ videographer, and web developer"
+						loading="eager"
 					/>
 				</div>
-				<div>
-					<h1 class="text-6xl font-semibold">Hey, I'm Shawn.</h1>
-					<p class="text-2xl font-light mt-4">
-						I make things for people in creative spaces.
+				<div class="max-w-lg text-center sm:text-left">
+					<h1 class="text-5xl lg:text-6xl font-semibold">
+						Hey, I'm Shawn.
+					</h1>
+					<p class="text-xl lg:text-2xl font-light mt-4">
+						I make Tampa businesses look good online. <br /><br /> I'm
+						a photographer, videographer, and web developer specializing
+						in creating stunning websites and digital content that helps
+						businesses grow and thrive in the digital age.
 					</p>
 				</div>
 			</div>
-			<div class="flex flex-col items-end gap-4">
+			<div class="flex flex-col items-center lg:items-end gap-4 shrink-0">
 				<div
 					class="p-2 flex flex-row items-center gap-2 bg-gray-100 rounded-full w-fit px-4 mb-2"
 				>
@@ -74,30 +147,79 @@ const workItems = [
 					</div>
 					<p>Tampa, FL</p>
 				</div>
-				<div id="badges">
+				<div
+					id="badges"
+					class="flex flex-wrap justify-center lg:justify-end gap-2"
+				>
 					<BadgeContainer />
 				</div>
 			</div>
 		</section>
-		<section
-			class="flex flex-col items-center gap-4 w-full h-96 justify-center"
-		>
-			<h2 class="text-4xl font-light">Find out more about what I do</h2>
-			<p class="text-xl"></p>
-			<MCPBot client:load />
+
+		<!-- MCP Bot section with marquee as background -->
+		<section class="relative w-screen min-h-[40em]">
+			<!-- Marquee background -->
+			<div class="absolute inset-0 z-0">
+				<PhotoMarquee photos={marqueePhotos} cmsBase={CMS_BASE} />
+			</div>
+			<!-- Overlay -->
+			<div class="absolute inset-0 z-10 bg-white/30"></div>
+			<!-- Content -->
+			<div
+				class="relative z-20 flex flex-col items-center gap-4 w-full py-40 px-6 sm:px-20 justify-center"
+			>
+				<h2 class="text-4xl font-light text-center">
+					Find out more about what I do
+				</h2>
+				<p class="text-gray-600 text-base font-light">
+					Ask me anything about my services, process, or availability.
+				</p>
+				<MCPBot client:load />
+			</div>
 		</section>
 
-		<WorkShowcase items={workItems} />
-		<section>
-			<div class="max-w-lg mx-auto text-center">
+		<!-- Services preview -->
+		<section class="w-screen px-6 sm:px-20 py-20 border-t border-gray-100">
+			<div class="flex flex-col gap-4 mb-10">
+				<span
+					class="text-xs font-medium text-violet-600 uppercase tracking-widest"
+					>What we do</span
+				>
+				<h2 class="text-4xl font-semibold text-gray-900">
+					One studio. Every angle.
+				</h2>
+			</div>
+			<ServicesPreview
+				cmsBase={CMS_BASE}
+				allPhotos={marqueePhotos}
+				client:load
+			/>
+		</section>
+
+		<!-- Work showcase -->
+		<section class="w-screen border-t border-gray-100 overflow-visible">
+			<WorkShowcase items={workItems} />
+		</section>
+
+		<!-- Available for work CTA -->
+		<section class="w-full px-6 sm:px-20 py-20 border-t border-gray-100">
+			<div
+				class="max-w-lg mx-auto text-center flex flex-col items-center gap-6"
+			>
 				<h2 class="text-4xl font-light">
 					I'm currently available for work.
 				</h2>
-				<p class="text-xl mt-2">
-					I'm open to new opportunities and collaborations. <br /> If you
-					have a project in mind or just want to chat, feel free to reach
-					out!
+				<p class="text-xl font-light text-gray-500">
+					I'm open to new opportunities and collaborations. If you
+					have a project in mind or just want to chat, feel free to
+					reach out.
 				</p>
+				<a
+					href="/contact"
+					class="px-8 py-4 rounded-full bg-violet-600 hover:bg-violet-700 text-white text-sm font-medium transition-colors duration-200"
+				>
+					Get in touch →
+				</a>
 			</div>
 		</section>
 	</main>

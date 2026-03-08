@@ -1,0 +1,125 @@
+---
+interface Photo {
+	url: string;
+	alt: string;
+	width: number;
+	height: number;
+}
+
+interface Props {
+	photos: Photo[];
+	cmsBase: string;
+}
+
+const { photos, cmsBase } = Astro.props;
+
+// Shuffle and split into two rows
+function shuffle<T>(arr: T[]): T[] {
+	return [...arr].sort(() => Math.random() - 0.5);
+}
+
+const shuffled = shuffle(photos);
+const mid = Math.ceil(shuffled.length / 2);
+const row1 = shuffled.slice(0, mid);
+const row2 = shuffled.slice(mid);
+---
+
+<div class="w-full overflow-hidden py-8 space-y-4">
+	<!-- Row 1: scroll left -->
+	<div class="marquee-row">
+		<div class="marquee-track marquee-left">
+			{
+				[...row1, ...row1].map((photo) => (
+					<div class="marquee-item">
+						<img
+							src={
+								photo.url.startsWith("http")
+									? photo.url
+									: `${cmsBase}${photo.url}`
+							}
+							alt={photo.alt}
+							class="h-full w-auto object-cover rounded-xl"
+							loading="lazy"
+						/>
+					</div>
+				))
+			}
+		</div>
+	</div>
+
+	<!-- Row 2: scroll right -->
+	<div class="marquee-row">
+		<div class="marquee-track marquee-right">
+			{
+				[...row2, ...row2].map((photo) => (
+					<div class="marquee-item">
+						<img
+							src={
+								photo.url.startsWith("http")
+									? photo.url
+									: `${cmsBase}${photo.url}`
+							}
+							alt={photo.alt}
+							class="h-full w-auto object-cover rounded-xl"
+							loading="lazy"
+						/>
+					</div>
+				))
+			}
+		</div>
+	</div>
+</div>
+
+<style>
+	.marquee-row {
+		width: 100%;
+		overflow: hidden;
+		height: 220px;
+	}
+
+	.marquee-track {
+		display: flex;
+		flex-direction: row;
+		gap: 12px;
+		height: 100%;
+		width: max-content;
+	}
+
+	.marquee-item {
+		height: 100%;
+		flex-shrink: 0;
+		border-radius: 12px;
+		overflow: hidden;
+		background: #f3f3f3;
+	}
+
+	.marquee-left {
+		animation: scroll-left 60s linear infinite;
+	}
+
+	.marquee-right {
+		animation: scroll-right 60s linear infinite;
+	}
+
+	.marquee-row:hover .marquee-track {
+		animation-play-state: paused;
+	}
+
+	@keyframes scroll-left {
+		0% {
+			transform: translateX(0);
+		}
+		100% {
+			transform: translateX(-50%);
+		}
+	}
+
+	@keyframes scroll-right {
+		0% {
+			transform: translateX(-50%);
+		}
+		100% {
+			transform: translateX(0);
+		}
+	}
+</style>

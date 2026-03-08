@@ -11,7 +11,7 @@ const notion = new Client({ auth: process.env.NOTION_API_SECRET });
 const resend = new Resend(process.env.RESEND_API_KEY);
 
 const DATABASE_ID = "3173dfc4d57780beba51fb1128ace7cc";
-const MY_EMAIL = "hello@shawnpapineau.com";
+const MY_EMAIL = "shawn@shawnpapsmedia.com";
 
 export const POST: APIRoute = async ({ request }) => {
 	try {
@@ -20,7 +20,7 @@ export const POST: APIRoute = async ({ request }) => {
 		if (!name || !email) {
 			return new Response(
 				JSON.stringify({ error: "Name and email are required." }),
-				{ status: 400, headers: { "Content-Type": "application/json" } }
+				{ status: 400, headers: { "Content-Type": "application/json" } },
 			);
 		}
 
@@ -71,21 +71,33 @@ export const POST: APIRoute = async ({ request }) => {
 							<td style="padding: 8px 0; color: #888;">Email</td>
 							<td style="padding: 8px 0;">${email}</td>
 						</tr>
-						${phone ? `
+						${
+							phone
+								? `
 						<tr>
 							<td style="padding: 8px 0; color: #888;">Phone</td>
 							<td style="padding: 8px 0;">${phone}</td>
-						</tr>` : ""}
-						${budget ? `
+						</tr>`
+								: ""
+						}
+						${
+							budget
+								? `
 						<tr>
 							<td style="padding: 8px 0; color: #888;">Budget</td>
 							<td style="padding: 8px 0;">${budget}</td>
-						</tr>` : ""}
-						${notes ? `
+						</tr>`
+								: ""
+						}
+						${
+							notes
+								? `
 						<tr>
 							<td style="padding: 8px 0; color: #888; vertical-align: top;">Notes</td>
 							<td style="padding: 8px 0;">${notes}</td>
-						</tr>` : ""}
+						</tr>`
+								: ""
+						}
 					</table>
 					<hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
 					<a href="https://notion.so" style="display: inline-block; padding: 10px 20px; background: #7C3AED; color: white; border-radius: 999px; text-decoration: none; font-size: 14px;">
@@ -124,7 +136,7 @@ export const POST: APIRoute = async ({ request }) => {
 		console.error("Contact form error:", error);
 		return new Response(
 			JSON.stringify({ error: "Something went wrong. Please try again." }),
-			{ status: 500, headers: { "Content-Type": "application/json" } }
+			{ status: 500, headers: { "Content-Type": "application/json" } },
 		);
 	}
 };
