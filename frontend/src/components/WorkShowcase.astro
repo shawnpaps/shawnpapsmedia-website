@@ -1,0 +1,49 @@
+---
+import WorkCard from './WorkCard.astro'
+
+interface WorkItem {
+  title: string
+  client: string
+  summary: string
+  coverImage: string
+  slug: string
+}
+
+interface Props {
+  items: WorkItem[]
+}
+
+const { items } = Astro.props
+---
+
+<section id="work-showcase" class="w-full py-16 overflow-visible">
+  <h2 class="text-4xl font-light mb-10 px-20">My work</h2>
+
+  <div class="relative w-full overflow-x-auto overflow-y-visible scrollbar-hide">
+    <div class="flex flex-row gap-6 px-20 overflow-y-visible pb-16">
+      {
+        items.map((item, i) => (
+          <WorkCard
+            title={item.title}
+            client={item.client}
+            summary={item.summary}
+            coverImage={item.coverImage}
+            href={`/case-studies/${item.slug}`}
+            index={i}
+          />
+        ))
+      }
+    </div>
+  </div>
+</section>
+
+<style>
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+</style>

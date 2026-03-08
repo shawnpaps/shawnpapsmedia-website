@@ -1,0 +1,104 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MCPBot from "../components/react/mcp-bot.tsx";
+import WorkShowcase from "../components/WorkShowcase.astro";
+import BadgeContainer from "../components/BadgeContainer.astro";
+const workItems = [
+	{
+		title: "Example Project One",
+		client: "Client A",
+		summary:
+			"A brief overview of what this project involved, what problems were solved, and what was delivered.",
+		coverImage: "https://placehold.co/288x192",
+		slug: "example-project-one",
+	},
+	{
+		title: "Example Project Two",
+		client: "Client B",
+		summary:
+			"A brief overview of what this project involved, what problems were solved, and what was delivered.",
+		coverImage: "https://placehold.co/288x192",
+		slug: "example-project-two",
+	},
+	{
+		title: "Example Project Three",
+		client: "Client C",
+		summary:
+			"A brief overview of what this project involved, what problems were solved, and what was delivered.",
+		coverImage: "https://placehold.co/288x192",
+		slug: "example-project-three",
+	},
+	{
+		title: "Example Project Four",
+		client: "Client D",
+		summary:
+			"A brief overview of what this project involved, what problems were solved, and what was delivered.",
+		coverImage: "https://placehold.co/288x192",
+		slug: "example-project-four",
+	},
+	{
+		title: "Example Project Five",
+		client: "Client E",
+		summary:
+			"A brief overview of what this project involved, what problems were solved, and what was delivered.",
+		coverImage: "https://placehold.co/288x192",
+		slug: "example-project-five",
+	},
+];
+---
+
+<BaseLayout>
+	<main class="flex flex-col items-center min-h-screen gap-8 p-20">
+		<section
+			class="flex flex-row items-center justify-between gap-8 w-full"
+		>
+			<div class="flex flex-row items-center gap-8">
+				<div class="w-64 h-64 rounded-full overflow-hidden">
+					<img
+						class="w-full h-full object-cover"
+						src="http://192.168.4.62:3000/api/media/file/shawn_computer"
+					/>
+				</div>
+				<div>
+					<h1 class="text-6xl font-semibold">Hey, I'm Shawn.</h1>
+					<p class="text-2xl font-light mt-4">
+						I make things for people in creative spaces.
+					</p>
+				</div>
+			</div>
+			<div class="flex flex-col items-end gap-4">
+				<div
+					class="p-2 flex flex-row items-center gap-2 bg-gray-100 rounded-full w-fit px-4 mb-2"
+				>
+					<div class="w-2 animate-pulse h-2 bg-red-600 rounded-full">
+					</div>
+					<p>Tampa, FL</p>
+				</div>
+				<div id="badges">
+					<BadgeContainer />
+				</div>
+			</div>
+		</section>
+		<section
+			class="flex flex-col items-center gap-4 w-full h-96 justify-center"
+		>
+			<h2 class="text-4xl font-light">Find out more about what I do</h2>
+			<p class="text-xl"></p>
+			<MCPBot client:load />
+		</section>
+
+		<WorkShowcase items={workItems} />
+		<section>
+			<div class="max-w-lg mx-auto text-center">
+				<h2 class="text-4xl font-light">
+					I'm currently available for work.
+				</h2>
+				<p class="text-xl mt-2">
+					I'm open to new opportunities and collaborations. <br /> If you
+					have a project in mind or just want to chat, feel free to reach
+					out!
+				</p>
+			</div>
+		</section>
+	</main>
+</BaseLayout>

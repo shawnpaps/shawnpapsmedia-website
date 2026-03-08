@@ -1,0 +1,114 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import WorkCard from "../components/WorkCard.astro";
+
+const workItems = [
+	{
+		title: "Example Project One",
+		client: "Client A",
+		summary:
+			"A brief overview of what this project involved, what problems were solved, and what was delivered.",
+		coverImage: "https://placehold.co/480x288",
+		slug: "example-project-one",
+	},
+	{
+		title: "Example Project Two",
+		client: "Client B",
+		summary:
+			"A brief overview of what this project involved, what problems were solved, and what was delivered.",
+		coverImage: "https://placehold.co/480x288",
+		slug: "example-project-two",
+	},
+	{
+		title: "Example Project Three",
+		client: "Client C",
+		summary:
+			"A brief overview of what this project involved, what problems were solved, and what was delivered.",
+		coverImage: "https://placehold.co/480x288",
+		slug: "example-project-three",
+	},
+	{
+		title: "Example Project Four",
+		client: "Client D",
+		summary:
+			"A brief overview of what this project involved, what problems were solved, and what was delivered.",
+		coverImage: "https://placehold.co/480x288",
+		slug: "example-project-four",
+	},
+	{
+		title: "Example Project Five",
+		client: "Client E",
+		summary:
+			"A brief overview of what this project involved, what problems were solved, and what was delivered.",
+		coverImage: "https://placehold.co/480x288",
+		slug: "example-project-five",
+	},
+	{
+		title: "Example Project Six",
+		client: "Client F",
+		summary:
+			"A brief overview of what this project involved, what problems were solved, and what was delivered.",
+		coverImage: "https://placehold.co/480x288",
+		slug: "example-project-six",
+	},
+];
+---
+
+<BaseLayout>
+	<main class="flex flex-col min-h-screen px-20 py-16 gap-16">
+		<!-- Page header -->
+		<section class="flex flex-col gap-4 max-w-2xl">
+			<span
+				class="text-xs font-medium text-violet-600 uppercase tracking-widest"
+				>Selected Work</span
+			>
+			<h1 class="text-6xl font-semibold text-gray-900">
+				Things I've built.
+			</h1>
+			<p class="text-xl font-light text-gray-500 leading-relaxed">
+				A collection of projects across product design, web development,
+				and creative direction — made for people doing interesting things.
+			</p>
+		</section>
+
+		<!-- Filter row (placeholder) -->
+		<div class="flex flex-row items-center gap-3">
+			<button
+				class="px-4 py-1.5 rounded-full text-sm font-medium bg-violet-600 text-white transition-colors duration-200"
+			>
+				All
+			</button>
+			<button
+				class="px-4 py-1.5 rounded-full text-sm font-medium text-gray-500 border border-gray-200 hover:border-violet-300 hover:text-violet-600 transition-colors duration-200"
+			>
+				Web
+			</button>
+			<button
+				class="px-4 py-1.5 rounded-full text-sm font-medium text-gray-500 border border-gray-200 hover:border-violet-300 hover:text-violet-600 transition-colors duration-200"
+			>
+				Design
+			</button>
+			<button
+				class="px-4 py-1.5 rounded-full text-sm font-medium text-gray-500 border border-gray-200 hover:border-violet-300 hover:text-violet-600 transition-colors duration-200"
+			>
+				Photography
+			</button>
+		</div>
+
+		<!-- Cards grid -->
+		<section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 overflow-visible pb-24">
+			{
+				workItems.map((item, i) => (
+					<WorkCard
+						title={item.title}
+						client={item.client}
+						summary={item.summary}
+						coverImage={item.coverImage}
+						href={`/case-studies/${item.slug}`}
+						index={i}
+					/>
+				))
+			}
+		</section>
+	</main>
+</BaseLayout>

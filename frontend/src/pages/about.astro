@@ -1,0 +1,198 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const skills = [
+	{
+		label: "Frontend",
+		items: ["React", "Astro", "TypeScript", "Tailwind CSS"],
+	},
+	{
+		label: "Backend",
+		items: ["Node.js", "PostgreSQL", "Payload CMS", "REST APIs"],
+	},
+	{
+		label: "Creative",
+		items: ["Photography", "Art Direction", "Brand Identity", "UI Design"],
+	},
+];
+
+const experience = [
+	{
+		year: "2024 – Now",
+		role: "Freelance Developer & Designer",
+		company: "Independent",
+		description:
+			"Building web experiences for clients in creative industries — from photographers to studios to agencies.",
+	},
+	{
+		year: "2022 – 2024",
+		role: "Senior Frontend Developer",
+		company: "Some Studio",
+		description:
+			"Led frontend development on client projects, built design systems, and mentored junior developers.",
+	},
+	{
+		year: "2020 – 2022",
+		role: "Web Developer",
+		company: "Another Agency",
+		description:
+			"Developed marketing sites, e-commerce builds, and interactive campaigns for a range of brands.",
+	},
+];
+---
+
+<BaseLayout>
+	<main class="flex flex-col min-h-screen px-20 py-16 gap-24">
+		<!-- Hero -->
+		<section
+			class="flex flex-row items-center justify-between gap-16 w-full"
+		>
+			<div class="flex flex-col gap-6 max-w-2xl">
+				<span
+					class="text-xs font-medium text-violet-600 uppercase tracking-widest"
+				>
+					About Me
+				</span>
+				<h1 class="text-6xl font-semibold text-gray-900 leading-tight">
+					Developer, designer,<br />and photographer.
+				</h1>
+				<p class="text-xl font-light text-gray-500 leading-relaxed">
+					I'm Shawn — based in Tampa, FL. I work at the intersection
+					of code and craft, building things for people in creative
+					spaces. I care deeply about the details: the feel of an
+					interaction, the weight of a typeface, the light in a room.
+				</p>
+				<p class="text-xl font-light text-gray-500 leading-relaxed">
+					When I'm not building for clients, I'm shooting film,
+					tinkering with new tools, or thinking about how good design
+					changes how people feel about the world.
+				</p>
+				<div class="flex flex-row items-center gap-4 mt-2">
+					<a
+						href="mailto:hello@shawnpapineau.com"
+						class="px-6 py-3 rounded-full bg-violet-600 text-white text-sm font-medium hover:bg-violet-700 transition-colors duration-200"
+					>
+						Get in touch
+					</a>
+					<a
+						href="/work"
+						class="px-6 py-3 rounded-full border border-gray-200 text-gray-700 text-sm font-medium hover:border-violet-300 hover:text-violet-600 transition-colors duration-200"
+					>
+						See my work
+					</a>
+				</div>
+			</div>
+
+			<div
+				class="shrink-0 w-80 h-80 rounded-2xl overflow-hidden shadow-lg"
+			>
+				<img
+					src="http://192.168.4.62:3000/api/media/file/shawn_computer"
+					alt="Shawn Papineau"
+					class="w-full h-full object-cover"
+				/>
+			</div>
+		</section>
+
+		<!-- Skills -->
+		<section class="flex flex-col gap-10">
+			<div class="flex flex-col gap-2">
+				<span
+					class="text-xs font-medium text-violet-600 uppercase tracking-widest"
+				>
+					Skills
+				</span>
+				<h2 class="text-4xl font-semibold text-gray-900">
+					What I work with.
+				</h2>
+			</div>
+
+			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+				{
+					skills.map((group) => (
+						<div class="flex flex-col gap-4 p-8 rounded-2xl border border-gray-100 bg-white/60 backdrop-blur-sm shadow-sm">
+							<p class="text-xs font-semibold text-violet-600 uppercase tracking-widest">
+								{group.label}
+							</p>
+							<ul class="flex flex-col gap-2">
+								{group.items.map((item) => (
+									<li class="flex items-center gap-2 text-gray-700 text-base font-light">
+										<span class="w-1 h-1 rounded-full bg-violet-400 shrink-0" />
+										{item}
+									</li>
+								))}
+							</ul>
+						</div>
+					))
+				}
+			</div>
+		</section>
+
+		<!-- Experience -->
+		<section class="flex flex-col gap-10">
+			<div class="flex flex-col gap-2">
+				<span
+					class="text-xs font-medium text-violet-600 uppercase tracking-widest"
+				>
+					Experience
+				</span>
+				<h2 class="text-4xl font-semibold text-gray-900">
+					Where I've been.
+				</h2>
+			</div>
+
+			<div class="flex flex-col">
+				{
+					experience.map((item, i) => (
+						<div
+							class={`flex flex-row gap-12 py-10 ${i !== experience.length - 1 ? "border-b border-gray-100" : ""}`}
+						>
+							<p class="text-sm text-gray-400 font-light w-32 shrink-0 pt-1">
+								{item.year}
+							</p>
+							<div class="flex flex-col gap-2">
+								<div class="flex flex-row items-center gap-3">
+									<h3 class="text-xl font-semibold text-gray-900">
+										{item.role}
+									</h3>
+									<span class="text-sm text-violet-600 font-medium">
+										{item.company}
+									</span>
+								</div>
+								<p class="text-base font-light text-gray-500 leading-relaxed max-w-xl">
+									{item.description}
+								</p>
+							</div>
+						</div>
+					))
+				}
+			</div>
+		</section>
+
+		<!-- CTA -->
+		<section class="flex flex-col items-center text-center gap-6 py-20">
+			<span
+				class="text-xs font-medium text-violet-600 uppercase tracking-widest"
+			>
+				Available for work
+			</span>
+			<h2
+				class="text-5xl font-semibold text-gray-900 max-w-xl leading-tight"
+			>
+				Got a project in mind?
+			</h2>
+			<p
+				class="text-xl font-light text-gray-500 max-w-lg leading-relaxed"
+			>
+				I'm open to freelance projects, collaborations, and full-time
+				opportunities. Let's build something worth remembering.
+			</p>
+			<a
+				href="mailto:hello@shawnpapineau.com"
+				class="mt-2 px-8 py-4 rounded-full bg-violet-600 text-white text-base font-medium hover:bg-violet-700 transition-colors duration-200"
+			>
+				Say hello
+			</a>
+		</section>
+	</main>
+</BaseLayout>

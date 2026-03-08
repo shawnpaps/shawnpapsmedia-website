@@ -1,0 +1,52 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+
+const projects = [
+	{
+		name: "TourPass",
+		tagline: "Simplifying access for tour operators and their guests.",
+		status: "In development",
+	},
+];
+---
+
+<BaseLayout>
+	<main class="flex flex-col min-h-screen px-20 py-16 gap-16">
+		<!-- Page header -->
+		<section class="flex flex-col gap-4 max-w-2xl">
+			<span
+				class="text-xs font-medium text-violet-600 uppercase tracking-widest"
+			>
+				Projects
+			</span>
+			<h1 class="text-6xl font-semibold text-gray-900 leading-tight">
+				Things I'm building.
+			</h1>
+			<p class="text-xl font-light text-gray-500 leading-relaxed">
+				Side projects and R&D work — ideas I'm exploring outside of
+				client work.
+			</p>
+		</section>
+
+		<!-- Projects list -->
+		<section class="flex flex-col divide-y divide-gray-100">
+			{
+				projects.map((project) => (
+					<div class="flex flex-row items-center justify-between py-10">
+						<div class="flex flex-col gap-2">
+							<h2 class="text-2xl font-semibold text-gray-900">
+								{project.name}
+							</h2>
+							<p class="text-base font-light text-gray-500">
+								{project.tagline}
+							</p>
+						</div>
+						<span class="text-xs font-medium text-violet-600 border border-violet-200 bg-violet-50 px-3 py-1 rounded-full">
+							{project.status}
+						</span>
+					</div>
+				))
+			}
+		</section>
+	</main>
+</BaseLayout>

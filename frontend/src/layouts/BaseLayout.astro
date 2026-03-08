@@ -1,0 +1,64 @@
+---
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import Header from "../components/Header.astro";
+import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
+import "../styles/global.css";
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<BaseHead title={SITE_TITLE} description={SITE_DESCRIPTION} />
+	</head>
+	<body
+		class="min-h-screen bg-[radial-gradient(ellipse_at_top_right,_#7C3AED33_0%,_transparent_60%)] bg-white"
+	>
+		<header class="w-full flex items-center justify-center p-4" id="nav">
+			<nav>
+				<ul
+					class="flex flex-row items-center gap-8 text-2xl font-light text-gray-900"
+				>
+					<li class="group flex flex-col items-center gap-1">
+						<a href="/">Home</a>
+						<div
+							class="h-1 w-full border-2 border-violet-500 rounded-full animate-expand -translate-x-100 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-in-out"
+						>
+						</div>
+					</li>
+					<li class="group flex flex-col items-center gap-1">
+						<a href="/work">Work</a>
+						<div
+							class="h-1 w-full border-2 border-violet-500 rounded-full animate-expand -translate-x-100 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-in-out"
+						>
+						</div>
+					</li>
+					<li class="group flex flex-col items-center gap-1">
+						<a href="/about">About</a>
+						<div
+							class="h-1 w-full border-2 border-violet-500 rounded-full animate-expand -translate-x-100 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-in-out"
+						>
+						</div>
+					</li>
+					<li class="group flex flex-col items-center gap-1">
+						<a href="/projects">Projects</a>
+						<div
+							class="h-1 w-full border-2 border-violet-500 rounded-full animate-expand -translate-x-100 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-in-out"
+						>
+						</div>
+					</li>
+					<li class="group flex flex-col items-center gap-1">
+						<a href="/contact">Contact</a>
+						<div
+							class="h-1 w-full border-2 border-violet-500 rounded-full animate-expand -translate-x-100 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-in-out"
+						>
+						</div>
+					</li>
+				</ul>
+			</nav>
+		</header>
+		<slot />
+
+		<Footer />
+	</body>
+</html>

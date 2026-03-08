@@ -1,0 +1,46 @@
+import type { APIRoute } from "astro";
+import OpenAI from "openai";
+import dotenv from "dotenv";
+
+dotenv.config({ path: ".env.local" });
+
+export const prerender = false;
+
+const openai = new OpenAI({
+	apiKey: process.env.OPENAI_API_KEY,
+});
+const promptId =
+	process.env.OPENAI_PROMPT_ID ||
+	"pmpt_69ad93fdd8dc81968072a8348e8bc82703bf8c25a5bd3111";
+
+export const POST: APIRoute = async ({ request }) => {
+	try {
+		const { message } = await request.json();
+
+		if (!message || typeof message !== "string") {
+			return new Response(JSON.stringify({ error: "Message is required" }), {
+				status: 400,
+				headers: { "Content-Type": "application/json" },
+			});
+		}
+
+		const response = await openai.responses.create({
+			prompt: {
+				id: promptId,
+				version: "4",
+			},
+			input: message,
+		});
+
+		return new Response(JSON.stringify({ reply: response.output_text }), {
+			status: 200,
+			headers: { "Content-Type": "application/json" },
+		});
+	} catch (error) {
+		console.error("OpenAI error:", error);
+		return new Response(JSON.stringify({ error: "Failed to get response" }), {
+			status: 500,
+			headers: { "Content-Type": "application/json" },
+		});
+	}
+};
