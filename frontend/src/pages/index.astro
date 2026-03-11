@@ -1,13 +1,13 @@
 ---
-import BaseLayout from "../layouts/BaseLayout.astro";
-import MCPBot from "../components/react/mcp-bot.tsx";
-import WorkShowcase from "../components/WorkShowcase.astro";
-import BadgeContainer from "../components/BadgeContainer.astro";
-import PhotoMarquee from "../components/PhotoMarquee.astro";
-import ServicesPreview from "../components/react/ServicesPreview.tsx";
+import BaseLayout from '../layouts/BaseLayout.astro';
+import MCPBot from '../components/react/mcp-bot.tsx';
+import WorkShowcase from '../components/WorkShowcase.astro';
+import BadgeContainer from '../components/BadgeContainer.astro';
+import PhotoMarquee from '../components/PhotoMarquee.astro';
+import ServicesPreview from '../components/react/ServicesPreview.tsx';
 
 const CMS_BASE = import.meta.env.PUBLIC_CMS_BASE;
-console.log("[index.astro] CMS_BASE =", CMS_BASE);
+console.log('[index.astro] CMS_BASE =', CMS_BASE);
 
 let marqueePhotos: {
 	url: string;
@@ -30,78 +30,76 @@ try {
 	const mediaRes = await fetch(`${CMS_BASE}/api/media?limit=100&depth=0`);
 	const mediaData = await mediaRes.json();
 	marqueePhotos = (mediaData?.docs ?? [])
-		.filter((d: any) => d.mimeType?.startsWith("image/"))
+		.filter((d: any) => d.mimeType?.startsWith('image/'))
 		.map((d: any) => ({
 			url: d.url,
-			alt: d.alt ?? "",
+			alt: d.alt ?? '',
 			width: d.width,
 			height: d.height,
 		}));
-	console.log("[index.astro] marqueePhotos fetched:", marqueePhotos.length);
+	console.log('[index.astro] marqueePhotos fetched:', marqueePhotos.length);
 } catch (e) {
-	console.error("Failed to fetch media for marquee:", e);
+	console.error('Failed to fetch media for marquee:', e);
 }
 
 try {
-	const workRes = await fetch(
-		`${CMS_BASE}/api/case-studies?limit=20&depth=1`,
-	);
+	const workRes = await fetch(`${CMS_BASE}/api/case-studies?limit=20&depth=1`);
 	const workData = await workRes.json();
 	workItems = (workData?.docs ?? []).map((d: any) => ({
-		title: d.title ?? "Untitled",
-		client: d.client ?? "",
-		summary: d.summary ?? "",
+		title: d.title ?? 'Untitled',
+		client: d.client ?? '',
+		summary: d.summary ?? '',
 		coverImage: d.coverImage?.url
 			? `${CMS_BASE}${d.coverImage.url}`
-			: "https://placehold.co/288x192",
+			: 'https://placehold.co/288x192',
 		slug: d.slug ?? d.id,
 	}));
 } catch (e) {
-	console.error("Failed to fetch case studies:", e);
+	console.error('Failed to fetch case studies:', e);
 }
 
 // Fallback work items if CMS fetch returns nothing
 if (workItems.length === 0) {
 	workItems = [
 		{
-			title: "Example Project One",
-			client: "Client A",
+			title: 'Example Project One',
+			client: 'Client A',
 			summary:
-				"A brief overview of what this project involved, what problems were solved, and what was delivered.",
-			coverImage: "https://placehold.co/288x192",
-			slug: "example-project-one",
+				'A brief overview of what this project involved, what problems were solved, and what was delivered.',
+			coverImage: 'https://placehold.co/288x192',
+			slug: 'example-project-one',
 		},
 		{
-			title: "Example Project Two",
-			client: "Client B",
+			title: 'Example Project Two',
+			client: 'Client B',
 			summary:
-				"A brief overview of what this project involved, what problems were solved, and what was delivered.",
-			coverImage: "https://placehold.co/288x192",
-			slug: "example-project-two",
+				'A brief overview of what this project involved, what problems were solved, and what was delivered.',
+			coverImage: 'https://placehold.co/288x192',
+			slug: 'example-project-two',
 		},
 		{
-			title: "Example Project Three",
-			client: "Client C",
+			title: 'Example Project Three',
+			client: 'Client C',
 			summary:
-				"A brief overview of what this project involved, what problems were solved, and what was delivered.",
-			coverImage: "https://placehold.co/288x192",
-			slug: "example-project-three",
+				'A brief overview of what this project involved, what problems were solved, and what was delivered.',
+			coverImage: 'https://placehold.co/288x192',
+			slug: 'example-project-three',
 		},
 		{
-			title: "Example Project Four",
-			client: "Client D",
+			title: 'Example Project Four',
+			client: 'Client D',
 			summary:
-				"A brief overview of what this project involved, what problems were solved, and what was delivered.",
-			coverImage: "https://placehold.co/288x192",
-			slug: "example-project-four",
+				'A brief overview of what this project involved, what problems were solved, and what was delivered.',
+			coverImage: 'https://placehold.co/288x192',
+			slug: 'example-project-four',
 		},
 		{
-			title: "Example Project Five",
-			client: "Client E",
+			title: 'Example Project Five',
+			client: 'Client E',
 			summary:
-				"A brief overview of what this project involved, what problems were solved, and what was delivered.",
-			coverImage: "https://placehold.co/288x192",
-			slug: "example-project-five",
+				'A brief overview of what this project involved, what problems were solved, and what was delivered.',
+			coverImage: 'https://placehold.co/288x192',
+			slug: 'example-project-five',
 		},
 	];
 }
@@ -113,9 +111,7 @@ if (workItems.length === 0) {
 		<section
 			class="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-10 w-full px-6 sm:px-12 lg:px-20 pt-16 pb-20"
 		>
-			<div
-				class="flex flex-col sm:flex-row items-center sm:items-start gap-8"
-			>
+			<div class="flex flex-col sm:flex-row items-center sm:items-start gap-8">
 				<div
 					class="w-48 h-48 sm:w-64 sm:h-64 rounded-full overflow-hidden shrink-0"
 				>
@@ -128,14 +124,11 @@ if (workItems.length === 0) {
 					/>
 				</div>
 				<div class="max-w-lg text-center sm:text-left">
-					<h1 class="text-5xl lg:text-6xl font-semibold">
-						Hey, I'm Shawn.
-					</h1>
+					<h1 class="text-5xl lg:text-6xl font-semibold">Hey, I'm Shawn.</h1>
 					<p class="text-xl lg:text-2xl font-light mt-4">
-						I make Tampa businesses look good online. <br /><br /> I'm
-						a photographer, videographer, and web developer specializing
-						in creating stunning websites and digital content that helps
-						businesses grow and thrive in the digital age.
+						I make creative brands look good online. <br /><br /> I'm a web developer
+						+ photographer specializing in creating stunning web experiences and content
+						that helps businesses dominate in the digital age.
 					</p>
 				</div>
 			</div>
@@ -143,8 +136,7 @@ if (workItems.length === 0) {
 				<div
 					class="p-2 flex flex-row items-center gap-2 bg-gray-100 rounded-full w-fit px-4 mb-2"
 				>
-					<div class="w-2 animate-pulse h-2 bg-red-600 rounded-full">
-					</div>
+					<div class="w-2 animate-pulse h-2 bg-red-600 rounded-full"></div>
 					<p>Tampa, FL</p>
 				</div>
 				<div
@@ -157,7 +149,9 @@ if (workItems.length === 0) {
 		</section>
 
 		<!-- MCP Bot section with marquee as background -->
-		<section class="relative w-screen min-h-[40em]">
+		<section
+			class="relative w-screen min-h-[40em] flex justify-center items-center"
+		>
 			<!-- Marquee background -->
 			<div class="absolute inset-0 z-0">
 				<PhotoMarquee photos={marqueePhotos} cmsBase={CMS_BASE} />
@@ -166,9 +160,9 @@ if (workItems.length === 0) {
 			<div class="absolute inset-0 z-10 bg-white/30"></div>
 			<!-- Content -->
 			<div
-				class="relative z-20 flex flex-col items-center gap-4 w-full py-40 px-6 sm:px-20 justify-center"
+				class="relative z-20 flex flex-col items-center gap-4 py-40 px-6 sm:px-20 justify-center bg-white/70 rounded-2xl w-fit mx-auto hover:bg-white transition-all ease-linear duration-200"
 			>
-				<h2 class="text-4xl font-light text-center">
+				<h2 class="text-4xl font-medium text-center">
 					Find out more about what I do
 				</h2>
 				<p class="text-gray-600 text-base font-light">
@@ -206,13 +200,10 @@ if (workItems.length === 0) {
 			<div
 				class="max-w-lg mx-auto text-center flex flex-col items-center gap-6"
 			>
-				<h2 class="text-4xl font-light">
-					I'm currently available for work.
-				</h2>
+				<h2 class="text-4xl font-light">I'm currently available for work.</h2>
 				<p class="text-xl font-light text-gray-500">
-					I'm open to new opportunities and collaborations. If you
-					have a project in mind or just want to chat, feel free to
-					reach out.
+					I'm open to new opportunities and collaborations. If you have a
+					project in mind or just want to chat, feel free to reach out.
 				</p>
 				<a
 					href="/contact"
