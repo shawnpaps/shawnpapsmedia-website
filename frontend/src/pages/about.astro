@@ -3,50 +3,50 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const services = [
 	{
-		label: "Photography",
+		label: "Web Design",
 		items: [
-			"Brand & commercial",
-			"Lifestyle & editorial",
-			"Real estate & property",
-			"Concert & music",
+			"UI & interaction design",
+			"Design systems",
+			"Prototyping & wireframing",
+			"Brand-driven layouts",
 		],
 	},
 	{
-		label: "Video & Content",
+		label: "Development",
 		items: [
-			"Brand video",
-			"Property walkthroughs",
-			"Short-form content",
-			"Social deliverables",
+			"Front-end engineering",
+			"Full-stack web apps",
+			"CMS & headless builds",
+			"API & platform integrations",
 		],
 	},
 	{
-		label: "Web & Digital",
+		label: "Creative Technology",
 		items: [
-			"Media-driven websites",
-			"Shopify & e-commerce",
-			"Platform integrations",
-			"Full-stack development",
+			"Interactive experiences",
+			"Motion & animation",
+			"AI-powered tooling",
+			"Custom tooling & scripts",
 		],
 	},
 ];
 
 const clients = [
 	{
-		type: "Creative Brands",
-		desc: "Barbers, coffee shops, apparel, makers, and B2C brands with a strong visual identity.",
+		type: "Creative Studios",
+		desc: "Agencies, production companies, and design studios that need a technical partner who speaks their language.",
 	},
 	{
-		type: "Real Estate",
-		desc: "Agents and teams with active listings who need consistent, professional photography and brand content.",
+		type: "Founders & Startups",
+		desc: "Early-stage teams who need a site that punches above their weight — built fast, built right.",
 	},
 	{
-		type: "Music & Artists",
-		desc: "Artists, bands, gear companies, and music industry businesses that need visuals with actual energy.",
+		type: "Artists & Musicians",
+		desc: "Independent artists and labels who want a web presence as distinctive as their sound.",
 	},
 	{
-		type: "Creative Startups",
-		desc: "Founders who want one partner to handle visuals and digital infrastructure — no juggling vendors.",
+		type: "Small Businesses",
+		desc: "Owner-operated businesses that want a real developer, not a template — and a long-term partner.",
 	},
 ];
 ---
@@ -61,22 +61,21 @@ const clients = [
 				<span
 					class="text-xs font-medium text-violet-600 uppercase tracking-widest"
 				>
-					Shawn Paps Media — Tampa, FL
+					Shawn Papineau — Tampa, FL
 				</span>
 				<h1 class="text-6xl font-semibold text-gray-900 leading-tight">
-					One studio.<br />Full picture.
+					Creative developer.<br />Thoughtful builder.
 				</h1>
 				<p class="text-xl font-light text-gray-500 leading-relaxed">
-					Shawn Paps Media is a Tampa-based photography and content
-					studio serving creative brands, lifestyle businesses, and
-					real estate professionals.
+					I design and build websites and web applications for brands,
+					artists, and founders who care about how things look and how
+					they work.
 				</p>
 				<p class="text-xl font-light text-gray-500 leading-relaxed">
-					The studio is led by a photographer with 7+ years of
-					software engineering experience — which means you get a
-					creative partner who can shoot your brand, build your
-					website, set up your store, and integrate the tools your
-					business runs on. No handoffs. No friction.
+					I've been writing software for 7+ years and designing for
+					just as long — which means you get someone who can own the
+					whole thing, from the first wireframe to production
+					deployment. No handoffs. No friction.
 				</p>
 				<div class="flex flex-row items-center gap-4 mt-2">
 					<a
@@ -116,21 +115,20 @@ const clients = [
 					The difference
 				</span>
 				<h2 class="text-4xl font-semibold text-gray-900 leading-tight">
-					The technical edge no other photographer can offer.
+					Design sense and engineering depth — in the same person.
 				</h2>
 			</div>
 			<div class="flex flex-col gap-6 max-w-xl pt-1">
 				<p class="text-lg font-light text-gray-500 leading-relaxed">
-					Most businesses have to hire a photographer, a videographer,
-					a web developer, and a Shopify consultant separately — and
-					then hope they all communicate. This studio does all of it
-					under one roof, with one creative vision.
+					Most projects suffer from the gap between designers who
+					can't implement and developers who can't design. I close
+					that gap — writing clean code and making deliberate visual
+					decisions from the same seat.
 				</p>
 				<p class="text-lg font-light text-gray-500 leading-relaxed">
-					The result is faster delivery, tighter execution, and a
-					brand that actually looks like itself across every
-					touchpoint — from the hero image on your homepage to the
-					product photos in your store.
+					The result is faster iteration, fewer misunderstandings, and
+					a final product that actually reflects the original vision
+					instead of a diluted version of it.
 				</p>
 				<!-- Signature offer callout -->
 				<div
@@ -139,16 +137,16 @@ const clients = [
 					<p
 						class="text-xs font-semibold text-violet-600 uppercase tracking-widest mb-2"
 					>
-						Signature Offer
+						How I work
 					</p>
 					<h3 class="text-xl font-semibold text-gray-900 mb-2">
-						The Rollout
+						Design → Build → Ship
 					</h3>
 					<p class="text-sm font-light text-gray-600 leading-relaxed">
-						A complete digital brand launch combining original
-						photography with a full website redesign and strategy.
-						Built for creative brands ready to look like they
-						belong.
+						I take projects from concept to deployed product. That
+						means wireframes, visual design, front-end build, CMS
+						setup, and launch — all handled without you needing to
+						manage a team.
 					</p>
 				</div>
 			</div>
@@ -162,9 +160,7 @@ const clients = [
 				>
 					Services
 				</span>
-				<h2 class="text-4xl font-semibold text-gray-900">
-					What we do.
-				</h2>
+				<h2 class="text-4xl font-semibold text-gray-900">What I do.</h2>
 			</div>
 
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -197,7 +193,7 @@ const clients = [
 					Who we work with
 				</span>
 				<h2 class="text-4xl font-semibold text-gray-900">
-					Built for brands that care about craft.
+					Who I work with.
 				</h2>
 			</div>
 
@@ -219,8 +215,8 @@ const clients = [
 			</div>
 
 			<p class="text-base font-light text-gray-400 italic max-w-xl">
-				Ideal client: someone who cares about craft and wants their
-				brand to look as good as their product actually is.
+				Ideal client: someone with a strong point of view who wants a
+				site that actually reflects it.
 			</p>
 		</section>
 
@@ -239,11 +235,11 @@ const clients = [
 			</div>
 			<div class="w-px h-4 bg-gray-200"></div>
 			<p class="text-sm font-light text-gray-500">
-				Available throughout the Tampa Bay area
+				Available for local and remote projects
 			</p>
 			<div class="w-px h-4 bg-gray-200"></div>
 			<p class="text-sm font-light text-gray-500">
-				Remote-friendly for web & digital projects
+				Open to contract, freelance, and retainer work
 			</p>
 		</section>
 
@@ -257,18 +253,14 @@ const clients = [
 			<h2
 				class="text-5xl font-semibold text-gray-900 max-w-xl leading-tight"
 			>
-				Ready to look like you belong?
+				Have something to build?
 			</h2>
 			<p
 				class="text-xl font-light text-gray-500 max-w-lg leading-relaxed"
 			>
-				Reach out through the contact form or find us on Instagram
-				<a
-					href="https://instagram.com/shawnpapsmedia"
-					target="_blank"
-					rel="noopener noreferrer"
-					class="text-violet-600 hover:underline">@shawnpapsmedia</a
-				>. Tell us about your project and let's go from there.
+				Tell me about your project — what you're building, where you're
+				stuck, or what you want to exist that doesn't yet. I'll get back
+				to you within a day or two.
 			</p>
 			<div class="flex flex-row items-center gap-4 mt-2">
 				<a
@@ -278,12 +270,12 @@ const clients = [
 					Start a project
 				</a>
 				<a
-					href="https://instagram.com/shawnpapsmedia"
+					href="https://github.com/shawnpapineau"
 					target="_blank"
 					rel="noopener noreferrer"
 					class="px-8 py-4 rounded-full border border-gray-200 text-gray-700 text-base font-medium hover:border-violet-300 hover:text-violet-600 transition-colors duration-200"
 				>
-					@shawnpapsmedia
+					GitHub
 				</a>
 			</div>
 		</section>

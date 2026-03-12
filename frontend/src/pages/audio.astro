@@ -1,0 +1,279 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+
+<BaseLayout>
+	<div class="bg-[#0a0a0a] text-white min-h-screen">
+		<!-- Hero -->
+		<section
+			class="relative flex flex-col justify-end min-h-[90vh] px-20 py-24 overflow-hidden"
+		>
+			<div
+				class="absolute inset-0 bg-[linear-gradient(to_bottom,_transparent_30%,_#0a0a0a_100%)] z-10"
+			>
+			</div>
+
+			<!-- Abstract waveform background -->
+			<div class="absolute inset-0 bg-[#0f0f0f] overflow-hidden">
+				<svg
+					class="absolute inset-0 w-full h-full opacity-10"
+					viewBox="0 0 1440 800"
+					preserveAspectRatio="xMidYMid slice"
+					xmlns="http://www.w3.org/2000/svg"
+				>
+					{
+						Array.from({ length: 80 }).map((_, i) => {
+							const x = (i / 80) * 1440;
+							const h = 40 + Math.sin(i * 0.4) * 30 + Math.sin(i * 0.9) * 50;
+							return (
+								<rect
+									x={x}
+									y={400 - h / 2}
+									width="6"
+									height={h}
+									rx="3"
+									fill="white"
+								/>
+							);
+						})
+					}
+				</svg>
+			</div>
+
+			<!-- Large background type -->
+			<span
+				class="absolute top-16 right-16 text-[200px] font-black text-white/5 leading-none select-none z-10"
+			>
+				AUDIO
+			</span>
+
+			<div class="relative z-20 max-w-3xl">
+				<span
+					class="text-xs font-medium text-emerald-400 uppercase tracking-widest mb-4 block"
+				>
+					Audio — Music Industry
+				</span>
+				<h1 class="text-7xl font-semibold leading-none text-white mb-6">
+					Built for the<br />music industry.
+				</h1>
+				<p class="text-xl font-light text-gray-400 max-w-xl leading-relaxed">
+					Websites, EPKs, streaming integrations, and digital tools
+					for artists, labels, and music-tech companies who need their
+					online presence to hit as hard as their sound.
+				</p>
+				<div class="flex flex-row items-center gap-4 mt-10">
+					<a
+						href="/contact"
+						class="px-8 py-4 rounded-full bg-emerald-500 text-gray-900 text-sm font-semibold hover:bg-emerald-400 transition-colors duration-200"
+					>
+						Start a project
+					</a>
+					<a
+						href="/work"
+						class="px-8 py-4 rounded-full border border-white/20 text-white text-sm font-light hover:border-white/40 transition-colors duration-200"
+					>
+						See the work
+					</a>
+				</div>
+			</div>
+		</section>
+
+		<!-- Intro -->
+		<section
+			class="px-20 py-24 flex flex-row items-start justify-between gap-20 border-b border-white/10"
+		>
+			<div class="max-w-sm shrink-0">
+				<h2 class="text-4xl font-semibold text-white leading-tight">
+					The web,<br />tuned for music.
+				</h2>
+			</div>
+			<div class="flex flex-col gap-6 max-w-xl">
+				<p class="text-lg font-light text-gray-400 leading-relaxed">
+					Most music websites are an afterthought — a template with a
+					Spotify embed slapped on it. I build artist sites and
+					music-industry tools that feel as intentional as the music
+					itself, with streaming platform integrations, release
+					automation, and experiences that hold up on every screen.
+				</p>
+				<p class="text-lg font-light text-gray-400 leading-relaxed">
+					I've been deep in music my whole life. That means I
+					understand the release cycle, the label structure, the
+					platform quirks, and what an artist actually needs to turn
+					their website into a real asset — not just a link in a bio.
+				</p>
+			</div>
+		</section>
+
+		<!-- Services grid -->
+		<section class="px-20 py-24 border-b border-white/10">
+			<div class="flex flex-col gap-12">
+				<div class="flex flex-col gap-2">
+					<span
+						class="text-xs font-medium text-emerald-400 uppercase tracking-widest"
+					>
+						What I build
+					</span>
+					<h2 class="text-4xl font-semibold text-white">Services</h2>
+				</div>
+				<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+					{
+						[
+							{
+								title: "Artist Websites",
+								desc: "Custom-built sites for independent artists and signed acts — discographies, tour dates, merch, and press, all in one place.",
+							},
+							{
+								title: "EPK Design & Build",
+								desc: "Digital electronic press kits that give blogs, bookers, and sync supervisors exactly what they need, fast.",
+							},
+							{
+								title: "Label & Agency Sites",
+								desc: "Roster pages, release hubs, and brand sites for independent labels, booking agencies, and music-tech companies.",
+							},
+							{
+								title: "Streaming Integrations",
+								desc: "Spotify, Apple Music, SoundCloud, and Bandcamp — embedded and surfaced intelligently, not just linked.",
+							},
+							{
+								title: "Release Campaign Tools",
+								desc: "Pre-save pages, smart links, and release landing pages built to convert listeners into fans.",
+							},
+							{
+								title: "Custom Web Apps",
+								desc: "Setlist tools, fan portals, tour dashboards, and anything else the music industry needs but hasn't built yet.",
+							},
+						].map((s) => (
+							<div class="flex flex-col gap-3 p-8 bg-white/5 rounded-2xl border border-white/10 hover:border-emerald-500/30 transition-colors duration-200">
+								<h3 class="text-base font-semibold text-white">
+									{s.title}
+								</h3>
+								<p class="text-sm font-light text-gray-500 leading-relaxed">
+									{s.desc}
+								</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- Who it's for -->
+		<section class="px-20 py-24 border-b border-white/10">
+			<div class="flex flex-col gap-12">
+				<div class="flex flex-col gap-2">
+					<span
+						class="text-xs font-medium text-emerald-400 uppercase tracking-widest"
+					>
+						Who I work with
+					</span>
+					<h2 class="text-4xl font-semibold text-white leading-tight">
+						For anyone serious about music.
+					</h2>
+				</div>
+				<div class="flex flex-col divide-y divide-white/10">
+					{
+						[
+							{
+								type: "Independent Artists",
+								desc: "Artists who are done with link-in-bio tools and need a real home base — something that actually represents who they are.",
+							},
+							{
+								type: "Independent Labels",
+								desc: "Small labels managing multiple artists who need a clean, maintainable web presence without paying agency rates.",
+							},
+							{
+								type: "Booking Agents & Managers",
+								desc: "Industry professionals who need their roster and clients looking polished and professional online.",
+							},
+							{
+								type: "Music Tech Companies",
+								desc: "Startups and tools built for the music industry — from MVPs to production-ready platforms.",
+							},
+						].map((client) => (
+							<div class="flex flex-row gap-12 py-10">
+								<h3 class="text-lg font-semibold text-white w-56 shrink-0 pt-0.5">
+									{client.type}
+								</h3>
+								<p class="text-base font-light text-gray-500 leading-relaxed max-w-xl">
+									{client.desc}
+								</p>
+							</div>
+						))
+					}
+				</div>
+			</div>
+		</section>
+
+		<!-- The stack -->
+		<section class="px-20 py-24 bg-[#0f0f0f] border-b border-white/10">
+			<div class="flex flex-row items-start gap-20">
+				<div class="max-w-sm shrink-0 flex flex-col gap-3">
+					<span
+						class="text-xs font-medium text-emerald-400 uppercase tracking-widest"
+					>
+						How I build it
+					</span>
+					<h2 class="text-4xl font-semibold text-white leading-tight">
+						Modern tools.<br />No bloat.
+					</h2>
+				</div>
+				<div class="flex flex-col gap-6 max-w-xl pt-1">
+					<p class="text-lg font-light text-gray-400 leading-relaxed">
+						Music industry sites have specific needs — fast load
+						times for mobile listeners, clean embeds, easy content
+						updates for tour dates and releases, and integrations
+						with the platforms artists actually use.
+					</p>
+					<p class="text-lg font-light text-gray-400 leading-relaxed">
+						I build with Astro, Next.js, and React for the
+						front-end, backed by headless CMS setups (Payload,
+						Sanity) that make it easy for artists or their teams to
+						keep things current without touching code.
+					</p>
+					<div
+						class="mt-4 p-6 rounded-2xl border border-emerald-500/20 bg-emerald-500/5"
+					>
+						<p
+							class="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-2"
+						>
+							A note on ownership
+						</p>
+						<p class="text-sm font-light text-gray-400 leading-relaxed">
+							Everything I build, you own. No proprietary
+							platforms, no monthly software subscriptions you
+							didn't ask for, no lock-in. Just clean code and a
+							CMS you can hand off to anyone.
+						</p>
+					</div>
+				</div>
+			</div>
+		</section>
+
+		<!-- CTA -->
+		<section
+			class="px-20 py-32 flex flex-col items-center text-center gap-6"
+		>
+			<span
+				class="text-xs font-medium text-emerald-400 uppercase tracking-widest"
+			>
+				Let's work together
+			</span>
+			<h2
+				class="text-5xl font-semibold text-white max-w-xl leading-tight"
+			>
+				Ready to build something your fans will actually use?
+			</h2>
+			<p class="text-lg font-light text-gray-500 max-w-md leading-relaxed">
+				Tell me about your project — your sound, your audience, and
+				what you need your site to do. I'll get back to you within a
+				day or two.
+			</p>
+			<a
+				href="/contact"
+				class="mt-4 px-8 py-4 rounded-full bg-emerald-500 text-gray-900 text-sm font-semibold hover:bg-emerald-400 transition-colors duration-200"
+			>
+				Get in touch
+			</a>
+		</section>
+	</div>
+</BaseLayout>

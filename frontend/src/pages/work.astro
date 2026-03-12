@@ -63,11 +63,12 @@ const workItems = [
 				>Selected Work</span
 			>
 			<h1 class="text-6xl font-semibold text-gray-900">
-				Things I've built.
+				Things I've shipped.
 			</h1>
 			<p class="text-xl font-light text-gray-500 leading-relaxed">
-				A collection of projects across product design, web development,
-				and creative direction — made for people doing interesting things.
+				A selection of websites, web apps, and design systems — built
+				for founders, creative brands, and anyone who cares how their
+				product feels to use.
 			</p>
 		</section>
 
@@ -81,22 +82,24 @@ const workItems = [
 			<button
 				class="px-4 py-1.5 rounded-full text-sm font-medium text-gray-500 border border-gray-200 hover:border-violet-300 hover:text-violet-600 transition-colors duration-200"
 			>
-				Web
+				Web Apps
 			</button>
 			<button
 				class="px-4 py-1.5 rounded-full text-sm font-medium text-gray-500 border border-gray-200 hover:border-violet-300 hover:text-violet-600 transition-colors duration-200"
 			>
-				Design
+				Design Systems
 			</button>
 			<button
 				class="px-4 py-1.5 rounded-full text-sm font-medium text-gray-500 border border-gray-200 hover:border-violet-300 hover:text-violet-600 transition-colors duration-200"
 			>
-				Photography
+				E-Commerce
 			</button>
 		</div>
 
 		<!-- Cards grid -->
-		<section class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 overflow-visible pb-24">
+		<section
+			class="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 overflow-visible pb-24"
+		>
 			{
 				workItems.map((item, i) => (
 					<WorkCard

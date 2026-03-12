@@ -54,10 +54,10 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 	const services: Service[] = [
 		{
 			id: "photography",
-			label: "Photography",
-			headline: "Visuals that stop the scroll.",
+			label: "Web Design",
+			headline: "Interfaces that feel inevitable.",
 			description:
-				"Brand, lifestyle, real estate, and concert photography built for businesses that care about craft. Every frame is intentional.",
+				"UI design rooted in clarity and craft — layouts, design systems, and visual identities that translate seamlessly from Figma to production.",
 			cta: "See the work",
 			href: "/work",
 			accent: "violet",
@@ -68,10 +68,10 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 		},
 		{
 			id: "video",
-			label: "Video & Content",
-			headline: "Stories worth watching.",
+			label: "Development",
+			headline: "Built to perform, not just look good.",
 			description:
-				"Brand video, property walkthroughs, and short-form content built for the platforms your audience actually uses.",
+				"Front-end and full-stack development using modern tools — React, Astro, Next.js, and whatever the project actually calls for. Fast, accessible, and maintainable.",
 			cta: "Get in touch",
 			href: "/contact",
 			accent: "amber",
@@ -79,10 +79,10 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 		},
 		{
 			id: "web",
-			label: "Web & Dev",
-			headline: "Sites as good as your work.",
+			label: "Creative Technology",
+			headline: "Where code meets creativity.",
 			description:
-				"Media-driven websites, Shopify builds, and platform integrations — designed and engineered by the same person who shot your brand.",
+				"Interactive experiences, AI-powered tools, generative interfaces, and custom integrations — the kind of work that sits at the edge of what the web can do.",
 			cta: "See projects",
 			href: "/projects",
 			accent: "emerald",
