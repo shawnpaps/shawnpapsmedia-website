@@ -24,7 +24,10 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 					{
 						Array.from({ length: 80 }).map((_, i) => {
 							const x = (i / 80) * 1440;
-							const h = 40 + Math.sin(i * 0.4) * 30 + Math.sin(i * 0.9) * 50;
+							const h =
+								40 +
+								Math.sin(i * 0.4) * 30 +
+								Math.sin(i * 0.9) * 50;
 							return (
 								<rect
 									x={x}
@@ -56,7 +59,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 				<h1 class="text-7xl font-semibold leading-none text-white mb-6">
 					Built for the<br />music industry.
 				</h1>
-				<p class="text-xl font-light text-gray-400 max-w-xl leading-relaxed">
+				<p
+					class="text-xl font-light text-gray-400 max-w-xl leading-relaxed"
+				>
 					Websites, EPKs, streaming integrations, and digital tools
 					for artists, labels, and music-tech companies who need their
 					online presence to hit as hard as their sound.
@@ -96,11 +101,28 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 					automation, and experiences that hold up on every screen.
 				</p>
 				<p class="text-lg font-light text-gray-400 leading-relaxed">
-					I've been deep in music my whole life. That means I
-					understand the release cycle, the label structure, the
-					platform quirks, and what an artist actually needs to turn
-					their website into a real asset — not just a link in a bio.
+					I've been deep in music my whole life — as a listener, as
+					someone who produces and mixes bands, and now as a developer
+					building tools for the industry. That means I understand the
+					release cycle, the label structure, the platform quirks, and
+					what an artist actually needs to turn their website into a
+					real asset — not just a link in a bio.
 				</p>
+				<div
+					class="mt-2 p-5 rounded-2xl border border-white/10 bg-white/5"
+				>
+					<p
+						class="text-xs font-semibold text-emerald-400 uppercase tracking-widest mb-2"
+					>
+						Also worth knowing
+					</p>
+					<p class="text-sm font-light text-gray-400 leading-relaxed">
+						I produce and mix bands on the side. So if you need
+						someone who can talk gear, DAWs, or the creative process
+						without glazing over — I'm that person. It tends to make
+						the whole conversation easier.
+					</p>
+				</div>
 			</div>
 		</section>
 
@@ -238,7 +260,9 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 						>
 							A note on ownership
 						</p>
-						<p class="text-sm font-light text-gray-400 leading-relaxed">
+						<p
+							class="text-sm font-light text-gray-400 leading-relaxed"
+						>
 							Everything I build, you own. No proprietary
 							platforms, no monthly software subscriptions you
 							didn't ask for, no lock-in. Just clean code and a
@@ -263,10 +287,12 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 			>
 				Ready to build something your fans will actually use?
 			</h2>
-			<p class="text-lg font-light text-gray-500 max-w-md leading-relaxed">
-				Tell me about your project — your sound, your audience, and
-				what you need your site to do. I'll get back to you within a
-				day or two.
+			<p
+				class="text-lg font-light text-gray-500 max-w-md leading-relaxed"
+			>
+				Tell me about your project — your sound, your audience, and what
+				you need your site to do. I'll get back to you within a day or
+				two.
 			</p>
 			<a
 				href="/contact"

@@ -1,10 +1,10 @@
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect } from "react";
 
 export default function MCPBot() {
-	const [message, setMessage] = useState('');
-	const [reply, setReply] = useState('');
+	const [message, setMessage] = useState("");
+	const [reply, setReply] = useState("");
 	const [loading, setLoading] = useState(false);
-	const [error, setError] = useState('');
+	const [error, setError] = useState("");
 	const inputRef = useRef<HTMLInputElement>(null);
 
 	useEffect(() => {
@@ -16,26 +16,26 @@ export default function MCPBot() {
 		if (!message.trim() || loading) return;
 
 		setLoading(true);
-		setReply('');
-		setError('');
+		setReply("");
+		setError("");
 
 		try {
-			const res = await fetch('/api/chat', {
-				method: 'POST',
-				headers: { 'Content-Type': 'application/json' },
+			const res = await fetch("/api/chat", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
 				body: JSON.stringify({ message }),
 			});
 
 			if (!res.ok) {
 				const data = await res.json();
-				throw new Error(data.error || 'Something went wrong');
+				throw new Error(data.error || "Something went wrong");
 			}
 
 			const data = await res.json();
 			setReply(data.reply);
-			setMessage('');
+			setMessage("");
 		} catch (err) {
-			setError(err instanceof Error ? err.message : 'Something went wrong');
+			setError(err instanceof Error ? err.message : "Something went wrong");
 		} finally {
 			setLoading(false);
 		}
@@ -45,7 +45,8 @@ export default function MCPBot() {
 		<div className="w-full flex flex-col items-center gap-4">
 			<form
 				onSubmit={handleSubmit}
-				className="w-full flex flex-col items-center gap-2 justify-center">
+				className="w-full flex flex-col items-center gap-2 justify-center"
+			>
 				<label htmlFor="Prompt" className="relative w-full max-w-xl">
 					<input
 						ref={inputRef}
@@ -53,7 +54,7 @@ export default function MCPBot() {
 						id="Prompt"
 						value={message}
 						onChange={(e) => setMessage(e.target.value)}
-						placeholder="What is your photography style?"
+						placeholder="I need a web app..."
 						disabled={loading}
 						className="peer mt-0.5 bg-white/10 backdrop-blur-sm rounded-full p-5 w-full min-w-[500px] lg:text-2xl border border-gray-300 shadow-sm sm:text-sm dark:border-gray-600 dark:bg-gray-900 dark:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
 					/>
@@ -63,7 +64,8 @@ export default function MCPBot() {
 								className="animate-spin size-5 text-violet-500"
 								xmlns="http://www.w3.org/2000/svg"
 								fill="none"
-								viewBox="0 0 24 24">
+								viewBox="0 0 24 24"
+							>
 								<circle
 									className="opacity-25"
 									cx="12"
