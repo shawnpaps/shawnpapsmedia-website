@@ -71,6 +71,7 @@ export interface Config {
     media: Media;
     'case-studies': CaseStudy;
     'category-galleries': CategoryGallery;
+    projects: Project;
     'payload-kv': PayloadKv;
     'payload-locked-documents': PayloadLockedDocument;
     'payload-preferences': PayloadPreference;
@@ -82,6 +83,7 @@ export interface Config {
     media: MediaSelect<false> | MediaSelect<true>;
     'case-studies': CaseStudiesSelect<false> | CaseStudiesSelect<true>;
     'category-galleries': CategoryGalleriesSelect<false> | CategoryGalleriesSelect<true>;
+    projects: ProjectsSelect<false> | ProjectsSelect<true>;
     'payload-kv': PayloadKvSelect<false> | PayloadKvSelect<true>;
     'payload-locked-documents': PayloadLockedDocumentsSelect<false> | PayloadLockedDocumentsSelect<true>;
     'payload-preferences': PayloadPreferencesSelect<false> | PayloadPreferencesSelect<true>;
@@ -181,7 +183,49 @@ export interface CaseStudy {
    * A short description shown in listings and previews.
    */
   summary: string;
-  content: {
+  coverImage: number | Media;
+  /**
+   * Your role on this project, e.g. "Design & Development"
+   */
+  role?: string | null;
+  /**
+   * e.g. "6 weeks" or "Jan – Mar 2025"
+   */
+  timeline?: string | null;
+  /**
+   * Live site URL (optional)
+   */
+  liveUrl?: string | null;
+  /**
+   * GitHub / repo URL (optional)
+   */
+  repoUrl?: string | null;
+  tags?:
+    | {
+        tag: string;
+        id?: string | null;
+      }[]
+    | null;
+  category?: ('web-app' | 'design-system' | 'e-commerce' | 'branding' | 'marketing-site') | null;
+  publishedAt?: string | null;
+  status: 'draft' | 'published';
+  /**
+   * List each service delivered on this project.
+   */
+  services?:
+    | {
+        service: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * What problem was being solved? What was broken or missing?
+   */
+  challenge?: string | null;
+  /**
+   * How did you think about and solve the problem?
+   */
+  approach?: {
     root: {
       type: string;
       children: {
@@ -195,16 +239,55 @@ export interface CaseStudy {
       version: number;
     };
     [k: string]: unknown;
-  };
-  coverImage: number | Media;
-  tags?:
+  } | null;
+  /**
+   * Key results, metrics, or qualitative wins.
+   */
+  outcomes?:
     | {
-        tag: string;
+        /**
+         * e.g. "3×" or "40%"
+         */
+        stat?: string | null;
+        /**
+         * e.g. "faster page loads" or "increase in conversions"
+         */
+        label?: string | null;
         id?: string | null;
       }[]
     | null;
-  publishedAt?: string | null;
-  status: 'draft' | 'published';
+  testimonial?: {
+    quote?: string | null;
+    /**
+     * e.g. "Jane Smith, CEO of Acme"
+     */
+    attribution?: string | null;
+  };
+  gallery?:
+    | {
+        image: number | Media;
+        caption?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Optional long-form body content (rendered below the gallery).
+   */
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -237,6 +320,119 @@ export interface CategoryGallery {
   }[];
   publishedAt?: string | null;
   status: 'draft' | 'published';
+  updatedAt: string;
+  createdAt: string;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects".
+ */
+export interface Project {
+  id: number;
+  name: string;
+  /**
+   * URL-friendly identifier, e.g. "tourpass"
+   */
+  slug: string;
+  /**
+   * One-line description shown in the project list.
+   */
+  tagline: string;
+  /**
+   * A short paragraph shown at the top of the project detail page.
+   */
+  summary?: string | null;
+  /**
+   * Hero image for the project detail page.
+   */
+  coverImage?: (number | null) | Media;
+  status: 'in-development' | 'in-design' | 'launched' | 'on-hold' | 'archived';
+  /**
+   * Hidden projects are excluded from the listing.
+   */
+  visibility: 'public' | 'hidden';
+  /**
+   * When you started this project.
+   */
+  startedAt?: string | null;
+  /**
+   * Launch date (optional — fill in when shipped).
+   */
+  launchedAt?: string | null;
+  /**
+   * Live site or app URL.
+   */
+  liveUrl?: string | null;
+  /**
+   * GitHub / repo URL (optional).
+   */
+  repoUrl?: string | null;
+  /**
+   * Technologies, frameworks, and tools used.
+   */
+  stack?:
+    | {
+        technology: string;
+        id?: string | null;
+      }[]
+    | null;
+  tags?:
+    | {
+        tag: string;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * What problem is this project solving?
+   */
+  problem?: string | null;
+  /**
+   * How are you thinking about and building this?
+   */
+  approach?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  /**
+   * Any extra long-form content for the detail page.
+   */
+  content?: {
+    root: {
+      type: string;
+      children: {
+        type: any;
+        version: number;
+        [k: string]: unknown;
+      }[];
+      direction: ('ltr' | 'rtl') | null;
+      format: 'left' | 'start' | 'center' | 'right' | 'end' | 'justify' | '';
+      indent: number;
+      version: number;
+    };
+    [k: string]: unknown;
+  } | null;
+  gallery?:
+    | {
+        image: number | Media;
+        caption?: string | null;
+        id?: string | null;
+      }[]
+    | null;
+  /**
+   * Lower numbers appear first in the list.
+   */
+  order?: number | null;
   updatedAt: string;
   createdAt: string;
 }
@@ -279,6 +475,10 @@ export interface PayloadLockedDocument {
     | ({
         relationTo: 'category-galleries';
         value: number | CategoryGallery;
+      } | null)
+    | ({
+        relationTo: 'projects';
+        value: number | Project;
       } | null);
   globalSlug?: string | null;
   user: {
@@ -371,16 +571,49 @@ export interface CaseStudiesSelect<T extends boolean = true> {
   slug?: T;
   client?: T;
   summary?: T;
-  content?: T;
   coverImage?: T;
+  role?: T;
+  timeline?: T;
+  liveUrl?: T;
+  repoUrl?: T;
   tags?:
     | T
     | {
         tag?: T;
         id?: T;
       };
+  category?: T;
   publishedAt?: T;
   status?: T;
+  services?:
+    | T
+    | {
+        service?: T;
+        id?: T;
+      };
+  challenge?: T;
+  approach?: T;
+  outcomes?:
+    | T
+    | {
+        stat?: T;
+        label?: T;
+        id?: T;
+      };
+  testimonial?:
+    | T
+    | {
+        quote?: T;
+        attribution?: T;
+      };
+  gallery?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        id?: T;
+      };
+  content?: T;
   updatedAt?: T;
   createdAt?: T;
 }
@@ -402,6 +635,48 @@ export interface CategoryGalleriesSelect<T extends boolean = true> {
       };
   publishedAt?: T;
   status?: T;
+  updatedAt?: T;
+  createdAt?: T;
+}
+/**
+ * This interface was referenced by `Config`'s JSON-Schema
+ * via the `definition` "projects_select".
+ */
+export interface ProjectsSelect<T extends boolean = true> {
+  name?: T;
+  slug?: T;
+  tagline?: T;
+  summary?: T;
+  coverImage?: T;
+  status?: T;
+  visibility?: T;
+  startedAt?: T;
+  launchedAt?: T;
+  liveUrl?: T;
+  repoUrl?: T;
+  stack?:
+    | T
+    | {
+        technology?: T;
+        id?: T;
+      };
+  tags?:
+    | T
+    | {
+        tag?: T;
+        id?: T;
+      };
+  problem?: T;
+  approach?: T;
+  content?: T;
+  gallery?:
+    | T
+    | {
+        image?: T;
+        caption?: T;
+        id?: T;
+      };
+  order?: T;
   updatedAt?: T;
   createdAt?: T;
 }
