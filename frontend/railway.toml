@@ -1,0 +1,8 @@
+[build]
+builder = "nixpacks"
+buildCommand = "pnpm install && pnpm build"
+
+[deploy]
+startCommand = "node dist/server/entry.mjs"
+restartPolicyType = "on_failure"
+restartPolicyMaxRetries = 3
