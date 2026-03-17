@@ -1,0 +1,51 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import WorkGrid from "../components/react/WorkGrid";
+import type { WorkItem } from "../components/react/WorkGrid";
+
+const CMS_BASE = import.meta.env.PUBLIC_CMS_BASE ?? "http://localhost:3000";
+
+const workItems: WorkItem[] = await fetch(
+	`${CMS_BASE}/api/case-studies?limit=100&depth=1&where[status][equals]=published`,
+)
+	.then((res) => res.json())
+	.then((data) =>
+		(data?.docs ?? []).map((d: any) => ({
+			title: d.title ?? "Untitled",
+			client: d.client ?? "",
+			summary: d.summary ?? "",
+			coverImage: d.coverImage?.url
+				? `${CMS_BASE}${d.coverImage.url}`
+				: "https://placehold.co/480x256",
+			href: `/case-studies/${d.slug ?? d.id}`,
+			category: d.category ?? null,
+		})),
+	)
+	.catch((e) => {
+		console.error("Failed to fetch case studies:", e);
+		return [];
+	});
+---
+
+<BaseLayout>
+	<main class="flex flex-col min-h-screen px-6 sm:px-20 py-16 gap-16">
+		<!-- Page header -->
+		<section class="flex flex-col gap-4 max-w-2xl">
+			<span
+				class="text-xs font-medium text-violet-600 uppercase tracking-widest"
+				>Selected Work</span
+			>
+			<h1 class="text-6xl font-semibold text-gray-900">
+				Things I've shipped.
+			</h1>
+			<p class="text-xl font-light text-gray-500 leading-relaxed">
+				A selection of websites, web apps, and design systems — built
+				for founders, creative brands, and anyone who cares how their
+				product feels to use.
+			</p>
+		</section>
+
+		<!-- Filter row + cards — client-side React for instant filtering -->
+		<WorkGrid items={workItems} client:load />
+	</main>
+</BaseLayout>

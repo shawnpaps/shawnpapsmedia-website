@@ -6,13 +6,13 @@ import { defineConfig } from "astro/config";
 
 import tailwindcss from "@tailwindcss/vite";
 import react from "@astrojs/react";
-import node from "@astrojs/node";
+import vercel from "@astrojs/vercel";
 
 // https://astro.build/config
 export default defineConfig({
 	site: "https://example.com",
-	output: "static",
-	adapter: node({ mode: "standalone" }),
+	output: "server",
+	adapter: vercel(),
 	integrations: [mdx(), sitemap(), react()],
 
 	vite: {

@@ -1,0 +1,155 @@
+import { c as createComponent } from './astro-component_j14fbpTm.mjs';
+import { r as renderComponent, b as renderTemplate, m as maybeRenderHead, c as addAttribute, F as Fragment } from './entrypoint_DU0NaWmc.mjs';
+import { $ as $$BaseLayout } from './BaseLayout_CLRkvEkd.mjs';
+
+const prerender = false;
+const $$slug = createComponent(async ($$result, $$props, $$slots) => {
+  const Astro2 = $$result.createAstro($$props, $$slots);
+  Astro2.self = $$slug;
+  const CMS_BASE = "https://shawnpapsmedia-website.vercel.app";
+  const { slug } = Astro2.params;
+  let study = null;
+  let allStudies = [];
+  try {
+    const studyUrl = `${CMS_BASE}/api/case-studies?where[slug][equals]=${slug}&depth=2&limit=1`;
+    const allUrl = `${CMS_BASE}/api/case-studies?limit=100&depth=0`;
+    console.log("[slug] fetching study:", studyUrl);
+    const [studyRes, allRes] = await Promise.all([
+      fetch(studyUrl),
+      fetch(allUrl)
+    ]);
+    const studyData = await studyRes.json();
+    console.log("[slug] studyData:", JSON.stringify(studyData, null, 2));
+    study = studyData?.docs?.[0] ?? null;
+    const allData = await allRes.json();
+    allStudies = allData?.docs ?? [];
+  } catch (e) {
+    console.error("Failed to fetch case study:", e);
+  }
+  if (!study) {
+    return Astro2.redirect("/work");
+  }
+  const coverUrl = typeof study.coverImage === "object" && study.coverImage?.url ? `${CMS_BASE}${study.coverImage.url}` : null;
+  const publishedStudies = allStudies.filter((s) => s.status === "published");
+  const currentIndex = publishedStudies.findIndex((s) => s.slug === slug);
+  const prevStudy = currentIndex > 0 ? publishedStudies[currentIndex - 1] : null;
+  const nextStudy = currentIndex < publishedStudies.length - 1 ? publishedStudies[currentIndex + 1] : null;
+  const tags = study.tags ?? [];
+  const services = study.services ?? [];
+  const outcomes = study.outcomes ?? [];
+  const gallery = study.gallery ?? [];
+  const testimonial = study.testimonial ?? null;
+  function imgUrl(img) {
+    if (!img) return "";
+    if (typeof img === "string") return img;
+    return img.url ? `${CMS_BASE}${img.url}` : "";
+  }
+  function formatDate(iso) {
+    if (!iso) return "";
+    return new Date(iso).toLocaleDateString("en-US", {
+      year: "numeric",
+      month: "long",
+      day: "numeric"
+    });
+  }
+  return renderTemplate`${renderComponent($$result, "BaseLayout", $$BaseLayout, {}, { "default": async ($$result2) => renderTemplate` ${maybeRenderHead()}<article class="bg-white text-gray-900 min-h-screen"> <!-- ── Hero ──────────────────────────────────────────────────────────── --> <section class="relative flex flex-col justify-end min-h-[70vh] px-6 sm:px-20 py-20 overflow-hidden bg-gray-950"> <!-- Cover image --> ${coverUrl && renderTemplate`<div class="absolute inset-0"> <img${addAttribute(coverUrl, "src")}${addAttribute(study.title, "alt")} class="w-full h-full object-cover opacity-30" loading="eager"> </div>`} <div class="absolute inset-0 bg-[linear-gradient(to_bottom,_transparent_20%,_#030712_100%)]"></div> <!-- Ghost type --> <span class="absolute top-12 right-12 text-[clamp(80px,12vw,180px)] font-black text-white/5 leading-none select-none uppercase hidden lg:block"> ${study.client} </span> <div class="relative z-10 max-w-4xl"> <div class="flex flex-wrap items-center gap-3 mb-6"> <a href="/work" class="text-xs font-medium text-gray-500 hover:text-violet-400 transition-colors duration-200 flex items-center gap-1"> <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path> </svg>
+All work
+</a> <span class="text-gray-700">/</span> <span class="text-xs font-medium text-violet-400 uppercase tracking-widest">${study.client}</span> </div> <h1 class="text-5xl sm:text-6xl lg:text-7xl font-semibold text-white leading-tight mb-6"> ${study.title} </h1> <p class="text-xl font-light text-gray-400 max-w-2xl leading-relaxed"> ${study.summary} </p> ${tags.length > 0 && renderTemplate`<div class="flex flex-wrap gap-2 mt-8"> ${tags.map(({ tag }) => renderTemplate`<span class="px-3 py-1 rounded-full border border-white/10 text-xs font-medium text-gray-400"> ${tag} </span>`)} </div>`} </div> </section> <!-- ── Meta + Challenge ──────────────────────────────────────────────── --> <section class="px-6 sm:px-20 py-20 grid grid-cols-1 lg:grid-cols-3 gap-16 border-b border-gray-100"> <!-- Sidebar meta --> <aside class="flex flex-col gap-8"> ${study.client && renderTemplate`<div> <p class="text-xs font-semibold text-violet-600 uppercase tracking-widest mb-1">
+Client
+</p> <p class="text-base font-light text-gray-700">${study.client}</p> </div>`} ${study.role && renderTemplate`<div> <p class="text-xs font-semibold text-violet-600 uppercase tracking-widest mb-1">
+My Role
+</p> <p class="text-base font-light text-gray-700">${study.role}</p> </div>`} ${study.timeline && renderTemplate`<div> <p class="text-xs font-semibold text-violet-600 uppercase tracking-widest mb-1">
+Timeline
+</p> <p class="text-base font-light text-gray-700">${study.timeline}</p> </div>`} ${services.length > 0 && renderTemplate`<div> <p class="text-xs font-semibold text-violet-600 uppercase tracking-widest mb-2">
+Services
+</p> <ul class="flex flex-col gap-1.5"> ${services.map(({ service }) => renderTemplate`<li class="flex items-center gap-2 text-sm font-light text-gray-600"> <span class="w-1 h-1 rounded-full bg-violet-400 shrink-0"></span> ${service} </li>`)} </ul> </div>`} ${study.publishedAt && renderTemplate`<div> <p class="text-xs font-semibold text-violet-600 uppercase tracking-widest mb-1">
+Published
+</p> <p class="text-base font-light text-gray-700"> ${formatDate(study.publishedAt)} </p> </div>`} <div class="flex flex-col gap-3 pt-2"> ${study.liveUrl && renderTemplate`<a${addAttribute(study.liveUrl, "href")} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full bg-violet-600 hover:bg-violet-700 text-white text-sm font-medium transition-colors duration-200 w-fit">
+View live site
+<svg class="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path> </svg> </a>`} ${study.repoUrl && renderTemplate`<a${addAttribute(study.repoUrl, "href")} target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-full border border-gray-200 hover:border-violet-300 hover:text-violet-600 text-gray-700 text-sm font-medium transition-colors duration-200 w-fit">
+View source
+<svg class="w-3.5 h-3.5" fill="currentColor" viewBox="0 0 24 24"> <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"></path> </svg> </a>`} </div> </aside> <!-- Challenge --> <div class="lg:col-span-2"> ${study.challenge && renderTemplate`${renderComponent($$result2, "Fragment", Fragment, {}, { "default": async ($$result3) => renderTemplate` <span class="text-xs font-semibold text-violet-600 uppercase tracking-widest mb-4 block">
+The Challenge
+</span> <p class="text-2xl font-light text-gray-700 leading-relaxed"> ${study.challenge} </p> ` })}`} </div> </section> <!-- ── Outcomes ──────────────────────────────────────────────────────── --> ${outcomes.length > 0 && renderTemplate`<section class="px-6 sm:px-20 py-20 bg-gray-950 border-b border-white/5"> <span class="text-xs font-semibold text-violet-400 uppercase tracking-widest mb-12 block">
+Outcomes
+</span> <div class="grid grid-cols-2 md:grid-cols-4 gap-0 divide-x divide-white/10"> ${outcomes.map(({ stat, label }) => renderTemplate`<div class="flex flex-col gap-2 px-8 first:pl-0"> <p class="text-5xl font-semibold text-white leading-none"> ${stat} </p> <p class="text-sm font-light text-gray-500 leading-snug"> ${label} </p> </div>`)} </div> </section>`} <!-- ── Approach ──────────────────────────────────────────────────────── --> ${study.approach && renderTemplate`<section class="px-6 sm:px-20 py-20 border-b border-gray-100"> <div class="max-w-3xl mx-auto"> <span class="text-xs font-semibold text-violet-600 uppercase tracking-widest mb-6 block">
+The Approach
+</span> <div class="prose prose-lg prose-gray max-w-none prose-headings:font-semibold prose-headings:text-gray-900 prose-p:font-light prose-p:text-gray-600 prose-p:leading-relaxed prose-a:text-violet-600 prose-a:no-underline hover:prose-a:underline prose-strong:text-gray-900 prose-code:text-violet-700 prose-code:bg-violet-50 prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm"> <!-- Rich text rendered as HTML — Payload lexical requires a renderer.
+							     For now we surface the raw text nodes as a readable fallback. --> ${(() => {
+    const nodes = study.approach?.root?.children ?? [];
+    return nodes.map((node) => {
+      if (node.type === "paragraph") {
+        const text = (node.children ?? []).map((c) => c.text ?? "").join("");
+        return text ? renderTemplate`<p class="text-lg font-light text-gray-600 leading-relaxed mb-6"> ${text} </p>` : null;
+      }
+      if (node.type === "heading" && node.tag === "h2") {
+        const text = (node.children ?? []).map((c) => c.text ?? "").join("");
+        return renderTemplate`<h2 class="text-2xl font-semibold text-gray-900 mt-10 mb-4"> ${text} </h2>`;
+      }
+      if (node.type === "heading" && node.tag === "h3") {
+        const text = (node.children ?? []).map((c) => c.text ?? "").join("");
+        return renderTemplate`<h3 class="text-xl font-semibold text-gray-900 mt-8 mb-3"> ${text} </h3>`;
+      }
+      if (node.type === "list") {
+        const items = (node.children ?? []).map((item) => {
+          const text = (item.children ?? []).map((c) => c.text ?? "").join("");
+          return renderTemplate`<li class="flex items-start gap-2 text-lg font-light text-gray-600 mb-2"> <span class="w-1.5 h-1.5 rounded-full bg-violet-400 shrink-0 mt-2.5"></span> ${text} </li>`;
+        });
+        return renderTemplate`<ul class="flex flex-col mb-6"> ${items} </ul>`;
+      }
+      return null;
+    });
+  })()} </div> </div> </section>`} <!-- ── Gallery ───────────────────────────────────────────────────────── --> ${gallery.length > 0 && renderTemplate`<section class="px-6 sm:px-20 py-20 bg-gray-50 border-b border-gray-100"> <span class="text-xs font-semibold text-violet-600 uppercase tracking-widest mb-10 block">
+Project Gallery
+</span> <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4"> ${gallery.map(({ image, caption }) => renderTemplate`<div class="break-inside-avoid overflow-hidden rounded-xl bg-gray-200 group"> <img${addAttribute(imgUrl(image), "src")}${addAttribute(
+    typeof image === "object" ? image?.alt ?? caption ?? "" : "",
+    "alt"
+  )} class="w-full h-auto object-cover transition-transform duration-700 group-hover:scale-105" loading="lazy"> ${caption && renderTemplate`<p class="px-4 py-2.5 text-xs text-gray-500 font-light bg-white border-t border-gray-100"> ${caption} </p>`} </div>`)} </div> </section>`} <!-- ── Testimonial ───────────────────────────────────────────────────── --> ${testimonial?.quote && renderTemplate`<section class="px-6 sm:px-20 py-24 border-b border-gray-100"> <div class="max-w-3xl mx-auto flex flex-col gap-6 items-start"> <svg class="w-10 h-10 text-violet-200" fill="currentColor" viewBox="0 0 32 32"> <path d="M9.352 4C4.456 7.456 1 13.12 1 19.36c0 5.088 3.072 8.064 6.624 8.064 3.36 0 5.856-2.688 5.856-5.856 0-3.168-2.208-5.472-5.088-5.472-.576 0-1.344.096-1.536.192.48-3.264 3.552-7.104 6.624-9.024L9.352 4zm16.512 0c-4.8 3.456-8.256 9.12-8.256 15.36 0 5.088 3.072 8.064 6.624 8.064 3.264 0 5.856-2.688 5.856-5.856 0-3.168-2.304-5.472-5.184-5.472-.576 0-1.248.096-1.44.192.48-3.264 3.456-7.104 6.528-9.024L25.864 4z"></path> </svg> <blockquote class="text-2xl font-light text-gray-700 leading-relaxed italic">
+"${testimonial.quote}"
+</blockquote> ${testimonial.attribution && renderTemplate`<p class="text-sm font-medium text-gray-500">
+— ${testimonial.attribution} </p>`} </div> </section>`} <!-- ── Additional content (richText) ─────────────────────────────────── --> ${study.content && renderTemplate`<section class="px-6 sm:px-20 py-20 border-b border-gray-100"> <div class="max-w-3xl mx-auto"> <span class="text-xs font-semibold text-violet-600 uppercase tracking-widest mb-6 block">
+More Detail
+</span> <div> ${(() => {
+    const nodes = study.content?.root?.children ?? [];
+    return nodes.map((node) => {
+      if (node.type === "paragraph") {
+        const text = (node.children ?? []).map((c) => c.text ?? "").join("");
+        return text ? renderTemplate`<p class="text-lg font-light text-gray-600 leading-relaxed mb-6"> ${text} </p>` : null;
+      }
+      if (node.type === "heading") {
+        const text = (node.children ?? []).map((c) => c.text ?? "").join("");
+        return renderTemplate`<h2 class="text-2xl font-semibold text-gray-900 mt-10 mb-4"> ${text} </h2>`;
+      }
+      return null;
+    });
+  })()} </div> </div> </section>`} <!-- ── Next / Prev nav ───────────────────────────────────────────────── --> ${(prevStudy || nextStudy) && renderTemplate`<section class="px-6 sm:px-20 py-16 border-t border-gray-100"> <div class="flex flex-row items-stretch justify-between gap-8"> <!-- Prev --> <div class="flex-1"> ${prevStudy && renderTemplate`<a${addAttribute(`/case-studies/${prevStudy.slug}`, "href")} class="group flex flex-col gap-2"> <span class="text-xs font-medium text-gray-400 uppercase tracking-widest flex items-center gap-1"> <svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path> </svg>
+Previous project
+</span> <span class="text-xl font-semibold text-gray-900 group-hover:text-violet-600 transition-colors duration-200"> ${prevStudy.title} </span> <span class="text-sm font-light text-gray-500"> ${prevStudy.client} </span> </a>`} </div> <div class="w-px bg-gray-100 shrink-0"></div> <!-- Next --> <div class="flex-1 text-right"> ${nextStudy && renderTemplate`<a${addAttribute(`/case-studies/${nextStudy.slug}`, "href")} class="group flex flex-col gap-2 items-end"> <span class="text-xs font-medium text-gray-400 uppercase tracking-widest flex items-center gap-1">
+Next project
+<svg class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2"> <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path> </svg> </span> <span class="text-xl font-semibold text-gray-900 group-hover:text-violet-600 transition-colors duration-200"> ${nextStudy.title} </span> <span class="text-sm font-light text-gray-500"> ${nextStudy.client} </span> </a>`} </div> </div> </section>`} <!-- ── CTA ───────────────────────────────────────────────────────────── --> <section class="px-6 sm:px-20 py-24 bg-gray-950 flex flex-col items-center text-center gap-6"> <span class="text-xs font-medium text-violet-400 uppercase tracking-widest">
+Like what you see?
+</span> <h2 class="text-4xl sm:text-5xl font-semibold text-white max-w-xl leading-tight">
+Let's build something together.
+</h2> <p class="text-lg font-light text-gray-500 max-w-md leading-relaxed">
+Tell me about your project and I'll get back to you within a day
+				or two.
+</p> <div class="flex flex-row items-center gap-4 mt-2"> <a href="/contact" class="px-8 py-4 rounded-full bg-violet-600 hover:bg-violet-700 text-white text-sm font-medium transition-colors duration-200">
+Get in touch
+</a> <a href="/work" class="px-8 py-4 rounded-full border border-white/20 hover:border-white/40 text-white text-sm font-light transition-colors duration-200">
+See more work
+</a> </div> </section> </article> ` })}`;
+}, "/Users/shawnpapineau/Developer/spap/portfolio/frontend/src/pages/case-studies/[slug].astro", void 0);
+const $$file = "/Users/shawnpapineau/Developer/spap/portfolio/frontend/src/pages/case-studies/[slug].astro";
+const $$url = "/case-studies/[slug]";
+
+const _page = /*#__PURE__*/Object.freeze(/*#__PURE__*/Object.defineProperty({
+	__proto__: null,
+	default: $$slug,
+	file: $$file,
+	prerender,
+	url: $$url
+}, Symbol.toStringTag, { value: 'Module' }));
+
+const page = () => _page;
+
+export { page };
