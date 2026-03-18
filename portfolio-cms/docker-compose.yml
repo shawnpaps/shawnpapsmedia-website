@@ -19,5 +19,20 @@ services:
     extra_hosts:
       - 'host.docker.internal:host-gateway'
 
+  pgbouncer:
+    image: edoburu/pgbouncer:latest
+    restart: unless-stopped
+    ports:
+      - '6432:6432'
+    environment:
+      - DATABASE_URL=${DATABASE_URL}
+      - POOL_MODE=transaction
+      - DEFAULT_POOL_SIZE=20
+      - MAX_CLIENT_CONN=200
+      - MAX_DB_CONNECTIONS=25
+      - AUTH_TYPE=scram-sha-256
+    extra_hosts:
+      - 'host.docker.internal:host-gateway'
+
 volumes:
   node_modules:

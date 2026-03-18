@@ -42,6 +42,7 @@ export default buildConfig({
       clientUploads: true,
       collections: {
         media: true,
+        'media-prefix': 'media', // Optional, defaults to the collection slug
       },
       // Token provided by Vercel once Blob storage is added to your Vercel project
       token: process.env.BLOB_READ_WRITE_TOKEN,
