@@ -39,7 +39,6 @@ export default buildConfig({
     vercelBlobStorage({
       enabled: true, // Optional, defaults to true
       // Specify which collections should use Vercel Blob
-      clientUploads: true,
       collections: {
         media: true,
       },
