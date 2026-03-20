@@ -54,13 +54,13 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 	const services: Service[] = [
 		{
 			id: "photography",
-			label: "Web Design",
-			headline: "Interfaces that feel inevitable.",
+			label: "Photography",
+			headline: "Images that move people.",
 			description:
-				"UI design rooted in clarity and craft — layouts, design systems, and visual identities that translate seamlessly from Figma to production.",
+				"Professional photography for brands, music artists, real estate, and events. From concert pits to property listings to product launches — I capture the moments that matter for your brand.",
 			cta: "See the work",
-			href: "/work",
-			accent: "violet",
+			href: "/photography/brand-media",
+			accent: "amber",
 			photos: photosByKeyword(["Lakeview", "Haggard", "BrandHyve", "RJ"]).slice(
 				0,
 				4,
@@ -68,23 +68,23 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 		},
 		{
 			id: "video",
-			label: "Development",
-			headline: "Built to perform, not just look good.",
+			label: "Video",
+			headline: "Stories told in motion.",
 			description:
-				"Front-end and full-stack development using modern tools — React, Astro, Next.js, and whatever the project actually calls for. Fast, accessible, and maintainable.",
-			cta: "Get in touch",
+				"Video production and cinematography for music videos, brand content, event coverage, and promotional pieces. Full-service from concept to final cut — shot, edited, and delivered.",
+			cta: "Watch reels",
 			href: "/contact",
-			accent: "amber",
+			accent: "violet",
 			photos: photosByKeyword(["Dark Horse", "Lakeview", "RJ"]).slice(0, 4),
 		},
 		{
 			id: "web",
-			label: "Creative Technology",
-			headline: "Where code meets creativity.",
+			label: "Web Development",
+			headline: "Websites that match the vision.",
 			description:
-				"Interactive experiences, AI-powered tools, generative interfaces, and custom integrations — the kind of work that sits at the edge of what the web can do.",
+				"Custom websites and web apps built with modern tools — React, Astro, Next.js. I build digital experiences that actually reflect the quality of your brand, not just another template.",
 			cta: "See projects",
-			href: "/projects",
+			href: "/work",
 			accent: "emerald",
 			photos: photosByKeyword(["Shawn", "BrandHyve", "Avery"]).slice(0, 4),
 		},
