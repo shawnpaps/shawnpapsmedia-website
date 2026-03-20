@@ -54,10 +54,10 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 	const services: Service[] = [
 		{
 			id: "photography",
-			label: "Photo",
-			headline: "We make brands look like they mean it.",
+			label: "Photography",
+			headline: "Images that move people.",
 			description:
-				"Cinematic photography for independent brands — barbers, coffee shops, real estate, events. The kind of imagery that makes people stop scrolling and actually look.",
+				"Professional photography for brands, music artists, real estate, and events. From concert pits to property listings to product launches — I capture the moments that matter for your brand.",
 			cta: "See the work",
 			href: "/photography/brand-media",
 			accent: "amber",
@@ -69,21 +69,21 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 		{
 			id: "video",
 			label: "Video",
-			headline: "Stories that move — literally.",
+			headline: "Stories told in motion.",
 			description:
-				"Cinematic video for music artists, brands, and events. Music videos, brand content, event coverage — shot, edited, and delivered. No stock footage. No filler.",
-			cta: "See the work",
+				"Video production and cinematography for music videos, brand content, event coverage, and promotional pieces. Full-service from concept to final cut — shot, edited, and delivered.",
+			cta: "Watch reels",
 			href: "/contact",
 			accent: "violet",
 			photos: photosByKeyword(["Dark Horse", "Lakeview", "RJ"]).slice(0, 4),
 		},
 		{
 			id: "web",
-			label: "Web",
-			headline: "The site should be as good as the shoot.",
+			label: "Web Development",
+			headline: "Websites that match the vision.",
 			description:
-				"Custom websites and digital presence built to match the quality of your visual content. Not a template. Not a theme. A real site that looks like you mean it.",
-			cta: "See the work",
+				"Custom websites and web apps built with modern tools — React, Astro, Next.js. I build digital experiences that actually reflect the quality of your brand, not just another template.",
+			cta: "See projects",
 			href: "/work",
 			accent: "emerald",
 			photos: photosByKeyword(["Shawn", "BrandHyve", "Avery"]).slice(0, 4),
