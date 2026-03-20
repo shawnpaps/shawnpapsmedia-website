@@ -54,10 +54,10 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 	const services: Service[] = [
 		{
 			id: "photography",
-			label: "Web Design",
-			headline: "Interfaces that feel inevitable.",
+			label: "Web Development",
+			headline: "Built to perform, not just look good.",
 			description:
-				"UI design rooted in clarity and craft — layouts, design systems, and visual identities that translate seamlessly from Figma to production.",
+				"Full-stack web development — websites, web apps, CMS builds, e-commerce, and custom integrations. Most dev shops hand you a site and tell you to figure out the content. We handle both.",
 			cta: "See the work",
 			href: "/work",
 			accent: "violet",
@@ -68,21 +68,21 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 		},
 		{
 			id: "video",
-			label: "Development",
-			headline: "Built to perform, not just look good.",
+			label: "Photo & Video",
+			headline: "The visuals that make the site work.",
 			description:
-				"Front-end and full-stack development using modern tools — React, Astro, Next.js, and whatever the project actually calls for. Fast, accessible, and maintainable.",
-			cta: "Get in touch",
-			href: "/contact",
+				"We're the dev shop that can also handle the photography and video — so your brand gets a digital presence that actually looks like it belongs there. One partner, no handoffs.",
+			cta: "See the work",
+			href: "/photography/brand-media",
 			accent: "amber",
 			photos: photosByKeyword(["Dark Horse", "Lakeview", "RJ"]).slice(0, 4),
 		},
 		{
 			id: "web",
 			label: "Creative Technology",
-			headline: "Where code meets creativity.",
+			headline: "Where code meets craft.",
 			description:
-				"Interactive experiences, AI-powered tools, generative interfaces, and custom integrations — the kind of work that sits at the edge of what the web can do.",
+				"Interactive experiences, AI-powered tools, custom integrations, and the kind of work that sits at the edge of what the web can do — built by someone who actually ships.",
 			cta: "See projects",
 			href: "/projects",
 			accent: "emerald",
