@@ -3,16 +3,16 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 
 const services = [
 	{
-		label: "Photography",
+		label: "Photo",
 		items: [
 			"Brand & lifestyle photography",
-			"Concert & music photography",
 			"Real estate & architecture",
+			"Concert & music photography",
 			"Event coverage & documentation",
 		],
 	},
 	{
-		label: "Video Production",
+		label: "Video",
 		items: [
 			"Music videos & artist content",
 			"Brand videos & promos",
@@ -21,32 +21,36 @@ const services = [
 		],
 	},
 	{
-		label: "Web Development",
+		label: "Web",
 		items: [
-			"Custom websites & web apps",
+			"Custom websites & landing pages",
 			"CMS & e-commerce builds",
-			"Design systems & UI",
-			"API & platform integrations",
+			"Brand identity & design",
+			"Social & digital content",
 		],
 	},
 ];
 
 const clients = [
 	{
-		type: "Creative Brands",
-		desc: "Agencies, studios, and creative companies that need a visual partner who can also handle their digital presence.",
+		type: "Barbers & Salons",
+		desc: "Clean shots, fresh cuts, and a website that brings people through the door.",
 	},
 	{
-		type: "Music & Artists",
-		desc: "Musicians, labels, and music industry professionals who need press shots, music videos, tour content, and a killer website.",
+		type: "Coffee Shops & Cafés",
+		desc: "The vibe, the product, the space — captured right, built into a site that fits.",
+	},
+	{
+		type: "Music Artists",
+		desc: "Press shots, music videos, tour content, and a digital presence that matches the sound.",
 	},
 	{
 		type: "Real Estate",
-		desc: "Agents, developers, and property managers who need listing photography, walkthrough videos, and web presence that sells.",
+		desc: "Listing photography, walkthrough videos, and web presence that actually sells.",
 	},
 	{
 		type: "Events & Launches",
-		desc: "Event organizers and brands who need professional photo and video coverage, delivered fast and ready to publish.",
+		desc: "Fast, reliable photo and video coverage — delivered ready to post.",
 	},
 ];
 ---
@@ -61,28 +65,27 @@ const clients = [
 				<span
 					class="text-xs font-medium text-violet-600 uppercase tracking-widest"
 				>
-					Shawn Papineau — Tampa, FL
+					Shawn Paps Media — Tampa, FL
 				</span>
 				<h1 class="text-6xl font-semibold text-gray-900 leading-tight">
-					Photographer. Videographer. Developer.
+					We make brands look like they mean it.
 				</h1>
 				<p class="text-xl font-light text-gray-500 leading-relaxed">
-					I create visual content and build digital experiences for
-					creative brands, music artists, real estate professionals,
-					and events — all from one creative studio.
+					Whether you're relaunching, rebranding, or just finally
+					ready to look as serious as you are — we shoot it, edit it,
+					and build the site it lives on.
 				</p>
 				<p class="text-xl font-light text-gray-500 leading-relaxed">
-					I've been shooting for 7+ years and building websites for
-					just as long — which means you get someone who can handle
-					the visual and the digital under one roof. No handoffs. No
-					friction.
+					Tampa-based, but we work with brands wherever the work takes
+					us. One creative partner. Full-stack skillset. From the
+					first frame to the last line of code.
 				</p>
 				<div class="flex flex-row items-center gap-4 mt-2">
 					<a
 						href="/contact"
 						class="px-6 py-3 rounded-full bg-violet-600 text-white text-sm font-medium hover:bg-violet-700 transition-colors duration-200"
 					>
-						Start a project
+						Let's talk
 					</a>
 					<a
 						href="/work"
@@ -112,18 +115,18 @@ const clients = [
 				<span
 					class="text-xs font-medium text-violet-600 uppercase tracking-widest"
 				>
-					The difference
+					Why us
 				</span>
 				<h2 class="text-4xl font-semibold text-gray-900 leading-tight">
-					Visual craft and technical skill — in the same person.
+					One creative partner. Not three vendors.
 				</h2>
 			</div>
 			<div class="flex flex-col gap-6 max-w-xl pt-1">
 				<p class="text-lg font-light text-gray-500 leading-relaxed">
-					Most creative teams have a photographer who can't build
-					websites and a developer who can't shoot. I do both — so
-					the photography, video, and web all come from one vision,
-					one aesthetic, one point of view.
+					Most brands hire a photographer, then a videographer, then a
+					web developer — and wonder why nothing feels cohesive. We do
+					all three. The photo, the video, and the site come from the
+					same eye, the same aesthetic, the same point of view.
 				</p>
 				<p class="text-lg font-light text-gray-500 leading-relaxed">
 					That means your brand photos are designed with your website
@@ -138,16 +141,15 @@ const clients = [
 					<p
 						class="text-xs font-semibold text-violet-600 uppercase tracking-widest mb-2"
 					>
-						How I work
+						How we work
 					</p>
 					<h3 class="text-xl font-semibold text-gray-900 mb-2">
-						Shoot → Build → Launch
+						Shoot → Edit → Build → Launch
 					</h3>
 					<p class="text-sm font-light text-gray-600 leading-relaxed">
-						I take projects from creative direction through
-						production and delivery. That means photo shoots, video
-						edits, web design, development, and launch — all handled
-						without you needing to manage multiple vendors.
+						We take projects from creative direction through
+						production, post-production, and web build. You deal
+						with one person. Everything ships under one roof.
 					</p>
 				</div>
 			</div>
@@ -161,7 +163,7 @@ const clients = [
 				>
 					Services
 				</span>
-				<h2 class="text-4xl font-semibold text-gray-900">What I do.</h2>
+				<h2 class="text-4xl font-semibold text-gray-900">What we do.</h2>
 			</div>
 
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -194,7 +196,7 @@ const clients = [
 					Who we work with
 				</span>
 				<h2 class="text-4xl font-semibold text-gray-900">
-					Who I work with.
+					Independent brands at an inflection point.
 				</h2>
 			</div>
 
@@ -216,8 +218,8 @@ const clients = [
 			</div>
 
 			<p class="text-base font-light text-gray-400 italic max-w-xl">
-				Ideal client: someone with a strong point of view who wants a
-				site that actually reflects it.
+				If you're relaunching, rebranding, or ready to finally look as
+				serious as you are — that's who we work with.
 			</p>
 		</section>
 
@@ -236,7 +238,7 @@ const clients = [
 			</div>
 			<div class="w-px h-4 bg-gray-200"></div>
 			<p class="text-sm font-light text-gray-500">
-				Available for local and remote projects
+				Tampa-based · works everywhere
 			</p>
 			<div class="w-px h-4 bg-gray-200"></div>
 			<p class="text-sm font-light text-gray-500">
@@ -249,34 +251,31 @@ const clients = [
 			<span
 				class="text-xs font-medium text-violet-600 uppercase tracking-widest"
 			>
-				Let's create something
+				Let's talk
 			</span>
 			<h2
 				class="text-5xl font-semibold text-gray-900 max-w-xl leading-tight"
 			>
-				Ready to bring your vision to life?
+				Ready to reintroduce your brand?
 			</h2>
 			<p
 				class="text-xl font-light text-gray-500 max-w-lg leading-relaxed"
 			>
-				Whether it's a photo shoot, a video production, a new website,
-				or all three — tell me about your project and I'll get back to
-				you within a day or two.
+				Tell us where you are and where you want to be. We'll handle
+				the rest.
 			</p>
 			<div class="flex flex-row items-center gap-4 mt-2">
 				<a
 					href="/contact"
 					class="px-8 py-4 rounded-full bg-violet-600 text-white text-base font-medium hover:bg-violet-700 transition-colors duration-200"
 				>
-					Start a project
+					Start here
 				</a>
 				<a
-					href="https://github.com/shawnpapineau"
-					target="_blank"
-					rel="noopener noreferrer"
+					href="/work"
 					class="px-8 py-4 rounded-full border border-gray-200 text-gray-700 text-base font-medium hover:border-violet-300 hover:text-violet-600 transition-colors duration-200"
 				>
-					GitHub
+					See the work
 				</a>
 			</div>
 		</section>
