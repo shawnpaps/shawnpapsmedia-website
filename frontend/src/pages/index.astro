@@ -163,8 +163,8 @@ if (workItems.length === 0) {
 					/>
 				</div>
 				<div class="max-w-lg text-center sm:text-left">
-					<h1 class="text-5xl lg:text-6xl font-semibold">Hey, I'm Shawn.</h1>
-					<p class="text-xl lg:text-2xl font-light mt-4">
+					<h1 class="text-4xl sm:text-5xl lg:text-6xl font-semibold">Hey, I'm Shawn.</h1>
+					<p class="text-lg sm:text-xl lg:text-2xl font-light mt-4">
 						I build websites & tools for people doing interesting things. <br
 						/><br /> I'm a creative technologist based in Tampa — focused on web development,
 						web design, and the interfaces that make brands feel alive online.
@@ -189,7 +189,7 @@ if (workItems.length === 0) {
 
 		<!-- MCP Bot section with marquee as background -->
 		<section
-			class="relative w-screen min-h-[40em] flex justify-center items-center"
+			class="relative w-full min-h-[34em] sm:min-h-[40em] flex justify-center items-center px-4"
 		>
 			<!-- Marquee background -->
 			<div class="absolute inset-0 z-0">
@@ -199,10 +199,10 @@ if (workItems.length === 0) {
 			<div class="absolute inset-0 z-10 bg-white/30"></div>
 			<!-- Content -->
 			<div
-				class="relative z-20 flex flex-col items-center gap-4 py-40 px-6 sm:px-20 justify-center bg-white/70 rounded-2xl w-fit mx-auto hover:bg-white transition-all ease-linear duration-200"
+				class="relative z-20 flex flex-col items-center gap-4 py-16 sm:py-28 lg:py-40 px-4 sm:px-10 lg:px-20 justify-center bg-white/70 rounded-2xl w-full max-w-4xl mx-auto hover:bg-white transition-all ease-linear duration-200"
 			>
-				<h2 class="text-4xl font-medium text-center">Ask me anything</h2>
-				<p class="text-gray-600 text-base font-light">
+				<h2 class="text-3xl sm:text-4xl font-medium text-center">Ask me anything</h2>
+				<p class="text-gray-600 text-sm sm:text-base font-light text-center">
 					What I build, how I work, what a project costs — ask anything.
 				</p>
 				<MCPBot client:load />
@@ -210,13 +210,13 @@ if (workItems.length === 0) {
 		</section>
 
 		<!-- Services preview -->
-		<section class="w-screen px-6 sm:px-20 py-20 border-t border-gray-100">
+		<section class="w-full px-6 sm:px-10 lg:px-20 py-20 border-t border-gray-100">
 			<div class="flex flex-col gap-4 mb-10">
 				<span
 					class="text-xs font-medium text-violet-600 uppercase tracking-widest"
 					>What I do</span
 				>
-				<h2 class="text-4xl font-semibold text-gray-900">
+				<h2 class="text-3xl sm:text-4xl font-semibold text-gray-900">
 					Code, design, and everything in between.
 				</h2>
 			</div>
@@ -229,17 +229,17 @@ if (workItems.length === 0) {
 		</section>
 
 		<!-- Work showcase -->
-		<section class="w-screen border-t border-gray-100 overflow-visible">
+		<section class="w-full border-t border-gray-100 overflow-visible">
 			<WorkShowcase items={workItems} />
 		</section>
 
 		<!-- Available for work CTA -->
-		<section class="w-full px-6 sm:px-20 py-20 border-t border-gray-100">
+		<section class="w-full px-6 sm:px-10 lg:px-20 py-20 border-t border-gray-100">
 			<div
 				class="max-w-lg mx-auto text-center flex flex-col items-center gap-6"
 			>
-				<h2 class="text-4xl font-light">Let's build something.</h2>
-				<p class="text-xl font-light text-gray-500">
+				<h2 class="text-3xl sm:text-4xl font-light">Let's build something.</h2>
+				<p class="text-lg sm:text-xl font-light text-gray-500">
 					I'm currently available for new projects. Whether you need a full site
 					from scratch, a design system, or a tricky integration — I'd love to
 					hear about it.

@@ -27,7 +27,7 @@ const gridPhotos = photos.filter((p) => p !== featuredPhoto);
 	<div class="bg-[#0a0a0a] text-white min-h-screen">
 		<!-- Hero -->
 		<section
-			class="relative flex flex-col justify-end min-h-[90vh] px-20 py-24 overflow-hidden"
+			class="relative flex flex-col justify-end min-h-[80vh] sm:min-h-[90vh] px-6 sm:px-10 lg:px-20 py-16 sm:py-24 overflow-hidden"
 		>
 			<div
 				class="absolute inset-0 bg-[linear-gradient(to_bottom,_transparent_30%,_#0a0a0a_100%)] z-10"
@@ -51,11 +51,11 @@ const gridPhotos = photos.filter((p) => p !== featuredPhoto);
 				>
 					Photography — Concert & Music
 				</span>
-				<h1 class="text-7xl font-semibold leading-none text-white mb-6">
+				<h1 class="text-4xl sm:text-6xl lg:text-7xl font-semibold leading-none text-white mb-6">
 					The moment<br />before the roar.
 				</h1>
 				<p
-					class="text-xl font-light text-gray-400 max-w-xl leading-relaxed"
+					class="text-lg sm:text-xl font-light text-gray-400 max-w-xl leading-relaxed"
 				>
 					Live music photography that captures the energy, the sweat,
 					and the split-second that makes a show unforgettable.
@@ -65,10 +65,10 @@ const gridPhotos = photos.filter((p) => p !== featuredPhoto);
 
 		<!-- Intro -->
 		<section
-			class="px-20 py-24 flex flex-row items-start justify-between gap-20 border-b border-white/10"
+			class="px-6 sm:px-10 lg:px-20 py-16 sm:py-24 flex flex-col lg:flex-row items-start justify-between gap-10 lg:gap-20 border-b border-white/10"
 		>
 			<div class="max-w-sm shrink-0">
-				<h2 class="text-4xl font-semibold text-white leading-tight">
+				<h2 class="text-3xl sm:text-4xl font-semibold text-white leading-tight">
 					Fast. Raw.<br />Real.
 				</h2>
 			</div>
@@ -87,7 +87,7 @@ const gridPhotos = photos.filter((p) => p !== featuredPhoto);
 		</section>
 
 		<!-- Photo grid -->
-		<section class="px-20 py-24">
+		<section class="px-6 sm:px-10 lg:px-20 py-16 sm:py-24">
 			{
 				gridPhotos.length > 0 ? (
 					<div class="columns-1 sm:columns-2 lg:columns-3 gap-4 space-y-4">
@@ -115,14 +115,14 @@ const gridPhotos = photos.filter((p) => p !== featuredPhoto);
 		</section>
 
 		<!-- Services -->
-		<section class="px-20 py-24 bg-[#0f0f0f] border-t border-white/10">
+		<section class="px-6 sm:px-10 lg:px-20 py-16 sm:py-24 bg-[#0f0f0f] border-t border-white/10">
 			<div class="flex flex-col gap-12">
 				<div class="flex flex-col gap-2">
 					<span
 						class="text-xs font-medium text-violet-400 uppercase tracking-widest"
 						>What I cover</span
 					>
-					<h2 class="text-4xl font-semibold text-white">Services</h2>
+					<h2 class="text-3xl sm:text-4xl font-semibold text-white">Services</h2>
 				</div>
 				<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
 					{
@@ -168,14 +168,14 @@ const gridPhotos = photos.filter((p) => p !== featuredPhoto);
 
 		<!-- CTA -->
 		<section
-			class="px-20 py-32 flex flex-col items-center text-center gap-6 border-t border-white/10"
+			class="px-6 sm:px-10 lg:px-20 py-20 sm:py-32 flex flex-col items-center text-center gap-6 border-t border-white/10"
 		>
 			<span
 				class="text-xs font-medium text-violet-400 uppercase tracking-widest"
 				>Book a shoot</span
 			>
 			<h2
-				class="text-5xl font-semibold text-white max-w-xl leading-tight"
+				class="text-3xl sm:text-5xl font-semibold text-white max-w-xl leading-tight"
 			>
 				Got a show coming up?
 			</h2>

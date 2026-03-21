@@ -17,10 +17,10 @@ const { items } = Astro.props
 ---
 
 <section id="work-showcase" class="w-full py-16 overflow-visible">
-  <h2 class="text-4xl font-light mb-10 px-20">My work</h2>
+  <h2 class="text-3xl sm:text-4xl font-light mb-10 px-6 sm:px-10 lg:px-20">My work</h2>
 
   <div class="relative w-full overflow-x-auto overflow-y-visible scrollbar-hide">
-    <div class="flex flex-row gap-6 px-20 overflow-y-visible pb-16">
+    <div class="flex flex-row gap-4 sm:gap-6 px-6 sm:px-10 lg:px-20 overflow-y-visible pb-16">
       {
         items.map((item, i) => (
           <WorkCard

@@ -13,11 +13,11 @@ const { title, client, summary, coverImage, href, index } = Astro.props;
 
 <a
 	href={href}
-	class="work-card group relative block w-[480px] shrink-0 rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:-translate-y-2"
+	class="work-card group relative block w-[82vw] sm:w-[440px] lg:w-[480px] shrink-0 rounded-lg overflow-hidden shadow-md transition-transform duration-300 hover:-translate-y-2"
 	style={`animation-delay: ${index * 120}ms`}
 >
 	<!-- Card snapshot image -->
-	<div class="w-[480px] h-72 overflow-hidden bg-gray-100">
+	<div class="w-full h-56 sm:h-72 overflow-hidden bg-gray-100">
 		<img
 			src={coverImage}
 			alt={title}

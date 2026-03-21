@@ -135,7 +135,7 @@ export default function ServicesPreview({
 	return (
 		<div className="w-full flex flex-col">
 			{/* Tab bar */}
-			<div className="flex flex-row items-end gap-0 border-b border-gray-100">
+			<div className="flex flex-row items-end gap-0 border-b border-gray-100 overflow-x-auto">
 				{services.map((s) => {
 					const isActive = s.id === active;
 					const a = accentClasses[s.accent];
@@ -143,7 +143,7 @@ export default function ServicesPreview({
 						<button
 							key={s.id}
 							onClick={() => switchTab(s.id)}
-							className={`relative px-8 py-5 text-lg font-light transition-colors duration-200 ${
+							className={`relative shrink-0 px-5 sm:px-8 py-4 sm:py-5 text-base sm:text-lg font-light transition-colors duration-200 ${
 								isActive
 									? a.tab + ' font-medium'
 									: 'text-gray-400 hover:text-gray-700'
@@ -161,11 +161,11 @@ export default function ServicesPreview({
 
 			{/* Panel */}
 			<div
-				className={`flex flex-row items-stretch gap-0 transition-opacity duration-200 min-h-[600px] ${
+				className={`flex flex-col lg:flex-row items-stretch gap-0 transition-opacity duration-200 min-h-[600px] ${
 					fading ? 'opacity-0' : 'opacity-100'
 				}`}>
 				{/* Image grid — left half */}
-				<div className="flex-1 grid grid-cols-2 grid-rows-2 gap-2 pt-6 pr-6">
+				<div className="flex-1 grid grid-cols-2 grid-rows-2 gap-2 pt-6 lg:pr-6">
 					{isVideo ? (
 						<>
 							{/* Mux hero video thumbnail */}
@@ -287,15 +287,15 @@ export default function ServicesPreview({
 				</div>
 
 				{/* Text content — right side */}
-				<div className="w-96 shrink-0 flex flex-col justify-center gap-8 pl-16 pt-6">
+				<div className="w-full lg:w-96 shrink-0 flex flex-col justify-center gap-6 sm:gap-8 lg:pl-16 pt-6">
 					<span
 						className={`text-xs font-semibold uppercase tracking-widest ${accent.eyebrow}`}>
 						{current.label}
 					</span>
-					<h3 className="text-5xl font-semibold text-gray-900 leading-tight">
+					<h3 className="text-3xl sm:text-4xl lg:text-5xl font-semibold text-gray-900 leading-tight">
 						{current.headline}
 					</h3>
-					<p className="text-lg font-light text-gray-500 leading-relaxed">
+					<p className="text-base sm:text-lg font-light text-gray-500 leading-relaxed">
 						{current.description}
 					</p>
 					<a

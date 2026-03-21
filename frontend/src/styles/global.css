@@ -3,3 +3,16 @@
 * {
 	letter-spacing: -0.03em;
 }
+
+html,
+body {
+	overflow-x: hidden;
+}
+
+img,
+video,
+canvas,
+svg {
+	max-width: 100%;
+	height: auto;
+}

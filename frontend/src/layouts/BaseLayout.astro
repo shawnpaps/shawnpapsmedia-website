@@ -1,7 +1,6 @@
 ---
 import BaseHead from '../components/BaseHead.astro';
 import Footer from '../components/Footer.astro';
-import Header from '../components/Header.astro';
 import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
 import '../styles/global.css';
 ---
@@ -15,10 +14,10 @@ import '../styles/global.css';
 		class="min-h-screen bg-[radial-gradient(ellipse_at_top_right,_#7C3AED33_0%,_transparent_60%)] bg-white"
 	>
 	<!-- Desktop nav -->
-	<header class="w-full hidden md:flex items-center justify-center p-4" id="nav">
+	<header class="w-full hidden lg:flex items-center justify-center px-4 py-4" id="nav">
 		<nav>
 			<ul
-				class="flex flex-row items-center gap-8 text-md font-light text-gray-900"
+				class="flex flex-row items-center gap-6 text-sm xl:text-base font-light text-gray-900"
 			>
 				<li class="group flex flex-col items-center gap-1">
 					<a href="/">Home</a>
@@ -68,7 +67,7 @@ import '../styles/global.css';
 	</header>
 
 	<!-- Mobile nav -->
-	<header class="w-full md:hidden flex items-center justify-between px-5 py-4" id="mobile-nav">
+	<header class="w-full lg:hidden flex items-center justify-between px-5 py-4" id="mobile-nav">
 		<a href="/" class="text-lg font-medium text-gray-900">SP</a>
 		<button
 			id="mobile-menu-btn"
@@ -85,17 +84,52 @@ import '../styles/global.css';
 	<!-- Mobile menu overlay -->
 	<div
 		id="mobile-menu"
-		class="fixed inset-0 z-50 bg-white/95 backdrop-blur-sm flex flex-col items-center justify-center gap-2 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"
+		class="fixed inset-0 z-50 bg-white/95 backdrop-blur-sm flex flex-col items-center justify-start pt-24 gap-2 opacity-0 pointer-events-none transition-opacity duration-300 overflow-y-auto lg:hidden"
 	>
-		<a href="/" class="mobile-link text-2xl font-light text-gray-900 py-4 px-8 rounded-xl hover:bg-gray-100 transition-colors">Home</a>
-		<a href="/work" class="mobile-link text-2xl font-light text-gray-900 py-4 px-8 rounded-xl hover:bg-gray-100 transition-colors">What I've Shipped</a>
-		<a href="/projects" class="mobile-link text-2xl font-light text-gray-900 py-4 px-8 rounded-xl hover:bg-gray-100 transition-colors">Current Projects</a>
-		<a href="/photography/brand-media" class="mobile-link text-2xl font-light text-gray-900 py-4 px-8 rounded-xl hover:bg-gray-100 transition-colors">Visual Media</a>
-		<a href="/about" class="mobile-link text-2xl font-light text-gray-900 py-4 px-8 rounded-xl hover:bg-gray-100 transition-colors">About</a>
-		<a href="/contact" class="mobile-link text-2xl font-light text-gray-900 py-4 px-8 rounded-xl hover:bg-gray-100 transition-colors">Contact</a>
+		<a href="/" class="mobile-link text-xl font-light text-gray-900 py-3 px-6 rounded-xl hover:bg-gray-100 transition-colors">Home</a>
+		<a href="/work" class="mobile-link text-xl font-light text-gray-900 py-3 px-6 rounded-xl hover:bg-gray-100 transition-colors">What I've Shipped</a>
+		<a href="/projects" class="mobile-link text-xl font-light text-gray-900 py-3 px-6 rounded-xl hover:bg-gray-100 transition-colors">Current Projects</a>
+		<a href="/photography/brand-media" class="mobile-link text-xl font-light text-gray-900 py-3 px-6 rounded-xl hover:bg-gray-100 transition-colors">Visual Media</a>
+		<a href="/about" class="mobile-link text-xl font-light text-gray-900 py-3 px-6 rounded-xl hover:bg-gray-100 transition-colors">About</a>
+		<a href="/contact" class="mobile-link text-xl font-light text-gray-900 py-3 px-6 rounded-xl hover:bg-gray-100 transition-colors">Contact</a>
 	</div>
 		<slot />
 
 		<Footer />
+		<script>
+			const menuButton = document.getElementById('mobile-menu-btn');
+			const menu = document.getElementById('mobile-menu');
+			const bar1 = document.getElementById('bar-1');
+			const bar2 = document.getElementById('bar-2');
+			const bar3 = document.getElementById('bar-3');
+			const links = document.querySelectorAll('.mobile-link');
+
+			if (menuButton && menu && bar1 && bar2 && bar3) {
+				const toggleMenu = () => {
+					const isOpen = menuButton.getAttribute('aria-expanded') === 'true';
+					const nextState = !isOpen;
+
+					menuButton.setAttribute('aria-expanded', String(nextState));
+					menu.classList.toggle('opacity-0', !nextState);
+					menu.classList.toggle('pointer-events-none', !nextState);
+					document.body.classList.toggle('overflow-hidden', nextState);
+
+					bar1.classList.toggle('translate-y-2', nextState);
+					bar1.classList.toggle('rotate-45', nextState);
+					bar2.classList.toggle('opacity-0', nextState);
+					bar3.classList.toggle('-translate-y-2', nextState);
+					bar3.classList.toggle('-rotate-45', nextState);
+				};
+
+				menuButton.addEventListener('click', toggleMenu);
+				links.forEach((link) => {
+					link.addEventListener('click', () => {
+						if (menuButton.getAttribute('aria-expanded') === 'true') {
+							toggleMenu();
+						}
+					});
+				});
+			}
+		</script>
 	</body>
 </html>

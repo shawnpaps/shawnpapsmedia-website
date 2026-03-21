@@ -45,7 +45,7 @@ function formatDate(iso: string | null | undefined): string {
 	title="Projects"
 	description="Personal projects, open-source tools, and product experiments I'm building."
 >
-	<main class="flex flex-col min-h-screen px-6 sm:px-20 py-16 gap-16">
+	<main class="flex flex-col min-h-screen px-6 sm:px-10 lg:px-20 py-16 gap-16">
 		<!-- Page header -->
 		<section class="flex flex-col gap-4 max-w-2xl">
 			<span
@@ -53,10 +53,10 @@ function formatDate(iso: string | null | undefined): string {
 			>
 				Projects
 			</span>
-			<h1 class="text-6xl font-semibold text-gray-900 leading-tight">
+			<h1 class="text-4xl sm:text-5xl lg:text-6xl font-semibold text-gray-900 leading-tight">
 				Things I'm building.
 			</h1>
-			<p class="text-xl font-light text-gray-500 leading-relaxed">
+			<p class="text-lg sm:text-xl font-light text-gray-500 leading-relaxed">
 				Personal projects, open-source tools, and product experiments —
 				built to scratch an itch or prove something out.
 			</p>
@@ -69,11 +69,11 @@ function formatDate(iso: string | null | undefined): string {
 					{projects.map((project) => (
 						<a
 							href={`/projects/${project.slug}`}
-							class="group flex flex-row items-center justify-between py-10 gap-8 hover:bg-gray-50 -mx-6 px-6 sm:-mx-20 sm:px-20 transition-colors duration-200"
+							class="group flex flex-col sm:flex-row sm:items-center justify-between py-8 sm:py-10 gap-5 sm:gap-8 hover:bg-gray-50 -mx-6 px-6 sm:-mx-10 sm:px-10 lg:-mx-20 lg:px-20 transition-colors duration-200"
 						>
 							<div class="flex flex-col gap-2 min-w-0">
-								<div class="flex items-center gap-3">
-									<h2 class="text-2xl font-semibold text-gray-900 group-hover:text-violet-600 transition-colors duration-200">
+								<div class="flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-3">
+									<h2 class="text-xl sm:text-2xl font-semibold text-gray-900 group-hover:text-violet-600 transition-colors duration-200">
 										{project.name}
 									</h2>
 									{project.startedAt && (
@@ -89,7 +89,7 @@ function formatDate(iso: string | null | undefined): string {
 								</p>
 							</div>
 
-							<div class="flex items-center gap-4 shrink-0">
+							<div class="flex items-center gap-3 sm:gap-4 shrink-0">
 								<span
 									class={`text-xs font-medium border px-3 py-1 rounded-full ${STATUS_COLORS[project.status]}`}
 								>
