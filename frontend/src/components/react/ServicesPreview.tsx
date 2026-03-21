@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect } from 'react';
 
 interface Photo {
 	url: string;
@@ -28,65 +28,59 @@ interface MuxAsset {
 
 interface Props {
 	cmsBase: string;
-	allPhotos: Photo[];
+	designPhotos: Photo[];
+	devPhotos: Photo[];
 }
 
-export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
-	const [active, setActive] = useState("photography");
+export default function ServicesPreview({
+	cmsBase,
+	designPhotos,
+	devPhotos,
+}: Props) {
+	const [active, setActive] = useState('design');
 	const [fading, setFading] = useState(false);
 	const [muxAssets, setMuxAssets] = useState<MuxAsset[]>([]);
 
 	useEffect(() => {
-		fetch("/api/mux-assets")
+		fetch('/api/mux-assets')
 			.then((r) => r.json())
 			.then((d) => setMuxAssets(d.assets ?? []))
 			.catch(() => {});
 	}, []);
 
-	// Filter photos by rough keyword matching on alt text
-	const photosByKeyword = (keywords: string[]) =>
-		allPhotos
-			.filter((p) =>
-				keywords.some((k) => p.alt.toLowerCase().includes(k.toLowerCase())),
-			)
-			.slice(0, 6);
-
 	const services: Service[] = [
 		{
-			id: "photography",
-			label: "Web Design",
-			headline: "Interfaces that feel inevitable.",
+			id: 'design',
+			label: 'Web Design',
+			headline: 'Interfaces that feel inevitable.',
 			description:
-				"UI design rooted in clarity and craft — layouts, design systems, and visual identities that translate seamlessly from Figma to production.",
-			cta: "See the work",
-			href: "/work",
-			accent: "violet",
-			photos: photosByKeyword(["Lakeview", "Haggard", "BrandHyve", "RJ"]).slice(
-				0,
-				4,
-			),
+				'Design that respects the craft. Layouts, systems, and visual language built to translate cleanly into production — no pixel soup, no guesswork.',
+			cta: 'See the work',
+			href: '/work',
+			accent: 'violet',
+			photos: designPhotos.slice(0, 4),
 		},
 		{
-			id: "video",
-			label: "Development",
-			headline: "Built to perform, not just look good.",
+			id: 'development',
+			label: 'Web Development',
+			headline: 'Where code meets creativity.',
 			description:
-				"Front-end and full-stack development using modern tools — React, Astro, Next.js, and whatever the project actually calls for. Fast, accessible, and maintainable.",
-			cta: "Get in touch",
-			href: "/contact",
-			accent: "amber",
-			photos: photosByKeyword(["Dark Horse", "Lakeview", "RJ"]).slice(0, 4),
+				'Not just websites. I build interactive experiences, AI tools, and custom integrations that sit at the edge of what the web can actually handle.',
+			cta: 'Get in touch',
+			href: '/contact',
+			accent: 'amber',
+			photos: devPhotos.slice(0, 4),
 		},
 		{
-			id: "web",
-			label: "Creative Technology",
-			headline: "Where code meets creativity.",
+			id: 'media',
+			label: 'Brand Media',
+			headline: "Show, Don't Tell",
 			description:
-				"Interactive experiences, AI-powered tools, generative interfaces, and custom integrations — the kind of work that sits at the edge of what the web can do.",
-			cta: "See projects",
-			href: "/projects",
-			accent: "emerald",
-			photos: photosByKeyword(["Shawn", "BrandHyve", "Avery"]).slice(0, 4),
+				'Video, motion, and creative media for brands that want to show, not tell. Shot, edited, and delivered for the web.',
+			cta: 'See projects',
+			href: '/projects',
+			accent: 'emerald',
+			photos: [],
 		},
 	];
 
@@ -97,22 +91,22 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 		{ tab: string; indicator: string; cta: string; eyebrow: string }
 	> = {
 		violet: {
-			tab: "text-violet-600",
-			indicator: "bg-violet-500",
-			cta: "bg-violet-600 hover:bg-violet-700",
-			eyebrow: "text-violet-500",
+			tab: 'text-violet-600',
+			indicator: 'bg-violet-500',
+			cta: 'bg-violet-600 hover:bg-violet-700',
+			eyebrow: 'text-violet-500',
 		},
 		amber: {
-			tab: "text-amber-600",
-			indicator: "bg-amber-500",
-			cta: "bg-amber-500 hover:bg-amber-600",
-			eyebrow: "text-amber-500",
+			tab: 'text-amber-600',
+			indicator: 'bg-amber-500',
+			cta: 'bg-amber-500 hover:bg-amber-600',
+			eyebrow: 'text-amber-500',
 		},
 		emerald: {
-			tab: "text-emerald-600",
-			indicator: "bg-emerald-500",
-			cta: "bg-emerald-600 hover:bg-emerald-700",
-			eyebrow: "text-emerald-500",
+			tab: 'text-emerald-600',
+			indicator: 'bg-emerald-500',
+			cta: 'bg-emerald-600 hover:bg-emerald-700',
+			eyebrow: 'text-emerald-500',
 		},
 	};
 
@@ -131,10 +125,10 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 	const [hero, ...thumbs] =
 		current.photos.length > 0
 			? current.photos
-			: [{ url: "https://placehold.co/800x600/f3f3f3/cccccc?text=.", alt: "" }];
+			: [{ url: 'https://placehold.co/800x600/f3f3f3/cccccc?text=.', alt: '' }];
 
 	// For the video tab, use mux thumbnails instead
-	const isVideo = current.id === "video";
+	const isVideo = current.id === 'media';
 	const videoHero = muxAssets[0];
 	const videoThumbs = muxAssets.slice(1, 3);
 
@@ -151,10 +145,9 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 							onClick={() => switchTab(s.id)}
 							className={`relative px-8 py-5 text-lg font-light transition-colors duration-200 ${
 								isActive
-									? a.tab + " font-medium"
-									: "text-gray-400 hover:text-gray-700"
-							}`}
-						>
+									? a.tab + ' font-medium'
+									: 'text-gray-400 hover:text-gray-700'
+							}`}>
 							{s.label}
 							{isActive && (
 								<span
@@ -169,9 +162,8 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 			{/* Panel */}
 			<div
 				className={`flex flex-row items-stretch gap-0 transition-opacity duration-200 min-h-[600px] ${
-					fading ? "opacity-0" : "opacity-100"
-				}`}
-			>
+					fading ? 'opacity-0' : 'opacity-100'
+				}`}>
 				{/* Image grid — left half */}
 				<div className="flex-1 grid grid-cols-2 grid-rows-2 gap-2 pt-6 pr-6">
 					{isVideo ? (
@@ -182,11 +174,10 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 									href={`https://stream.mux.com/${videoHero.playbackId}.m3u8`}
 									target="_blank"
 									rel="noopener noreferrer"
-									className="row-span-2 relative rounded-2xl overflow-hidden bg-gray-900 group"
-								>
+									className="row-span-2 relative rounded-2xl overflow-hidden bg-gray-900 group">
 									<img
 										src={videoHero.thumbnailUrl}
-										alt={videoHero.title ?? "Video"}
+										alt={videoHero.title ?? 'Video'}
 										className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90"
 									/>
 									<div className="absolute inset-0 flex items-center justify-center">
@@ -194,8 +185,7 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 											<svg
 												className="w-6 h-6 text-gray-900 ml-1"
 												fill="currentColor"
-												viewBox="0 0 24 24"
-											>
+												viewBox="0 0 24 24">
 												<path d="M8 5v14l11-7z" />
 											</svg>
 										</div>
@@ -219,11 +209,10 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 										href={`https://stream.mux.com/${videoThumbs[i].playbackId}.m3u8`}
 										target="_blank"
 										rel="noopener noreferrer"
-										className="relative rounded-xl overflow-hidden bg-gray-900 group"
-									>
+										className="relative rounded-xl overflow-hidden bg-gray-900 group">
 										<img
 											src={videoThumbs[i].thumbnailUrl}
-											alt={videoThumbs[i].title ?? "Video"}
+											alt={videoThumbs[i].title ?? 'Video'}
 											className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105 opacity-90"
 										/>
 										<div className="absolute inset-0 flex items-center justify-center">
@@ -231,8 +220,7 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 												<svg
 													className="w-4 h-4 text-gray-900 ml-0.5"
 													fill="currentColor"
-													viewBox="0 0 24 24"
-												>
+													viewBox="0 0 24 24">
 													<path d="M8 5v14l11-7z" />
 												</svg>
 											</div>
@@ -253,7 +241,7 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 								<div className="row-span-2 rounded-2xl overflow-hidden bg-gray-100">
 									<img
 										src={
-											hero.url.startsWith("http")
+											hero.url.startsWith('http')
 												? hero.url
 												: `${cmsBase}${hero.url}`
 										}
@@ -267,7 +255,7 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 								<div className="rounded-xl overflow-hidden bg-gray-100">
 									<img
 										src={
-											thumbs[0].url.startsWith("http")
+											thumbs[0].url.startsWith('http')
 												? thumbs[0].url
 												: `${cmsBase}${thumbs[0].url}`
 										}
@@ -283,7 +271,7 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 								<div className="rounded-xl overflow-hidden bg-gray-100">
 									<img
 										src={
-											thumbs[1].url.startsWith("http")
+											thumbs[1].url.startsWith('http')
 												? thumbs[1].url
 												: `${cmsBase}${thumbs[1].url}`
 										}
@@ -301,8 +289,7 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 				{/* Text content — right side */}
 				<div className="w-96 shrink-0 flex flex-col justify-center gap-8 pl-16 pt-6">
 					<span
-						className={`text-xs font-semibold uppercase tracking-widest ${accent.eyebrow}`}
-					>
+						className={`text-xs font-semibold uppercase tracking-widest ${accent.eyebrow}`}>
 						{current.label}
 					</span>
 					<h3 className="text-5xl font-semibold text-gray-900 leading-tight">
@@ -313,8 +300,7 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 					</p>
 					<a
 						href={current.href}
-						className={`self-start px-8 py-4 rounded-full text-white text-sm font-medium transition-colors duration-200 ${accent.cta}`}
-					>
+						className={`self-start px-8 py-4 rounded-full text-white text-sm font-medium transition-colors duration-200 ${accent.cta}`}>
 						{current.cta} →
 					</a>
 				</div>

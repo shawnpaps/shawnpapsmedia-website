@@ -27,16 +27,16 @@ export const CategoryGalleries: CollectionConfig = {
       required: true,
       options: [
         {
-          label: 'Real Estate',
-          value: 'real-estate',
+          label: 'Design',
+          value: 'design',
         },
         {
-          label: 'Concert & Music',
-          value: 'concert',
+          label: 'Development',
+          value: 'development',
         },
         {
-          label: 'Brand Media',
-          value: 'brand-media',
+          label: 'Media',
+          value: 'media',
         },
       ],
       admin: {

@@ -301,7 +301,7 @@ export interface CategoryGallery {
    * Internal title for this gallery, e.g. "Real Estate — Spring 2025"
    */
   title: string;
-  category: 'real-estate' | 'concert' | 'brand-media';
+  category: 'design' | 'development' | 'media';
   /**
    * Optional description shown with the gallery.
    */

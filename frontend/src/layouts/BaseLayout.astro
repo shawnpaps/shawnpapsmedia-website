@@ -1,9 +1,9 @@
 ---
-import BaseHead from "../components/BaseHead.astro";
-import Footer from "../components/Footer.astro";
-import Header from "../components/Header.astro";
-import { SITE_DESCRIPTION, SITE_TITLE } from "../consts";
-import "../styles/global.css";
+import BaseHead from '../components/BaseHead.astro';
+import Footer from '../components/Footer.astro';
+import Header from '../components/Header.astro';
+import { SITE_DESCRIPTION, SITE_TITLE } from '../consts';
+import '../styles/global.css';
 ---
 
 <!doctype html>
@@ -14,57 +14,86 @@ import "../styles/global.css";
 	<body
 		class="min-h-screen bg-[radial-gradient(ellipse_at_top_right,_#7C3AED33_0%,_transparent_60%)] bg-white"
 	>
-		<header class="w-full flex items-center justify-center p-4" id="nav">
-			<nav>
-				<ul
-					class="flex flex-row items-center gap-8 text-md font-light text-gray-900"
-				>
-					<li class="group flex flex-col items-center gap-1">
-						<a href="/">Home</a>
-						<div
-							class="h-1 w-full border-2 border-violet-500 rounded-full animate-expand -translate-x-100 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-in-out"
-						>
-						</div>
-					</li>
-					<li class="group flex flex-col items-center gap-1">
-						<a href="/work">What We've Shipped</a>
-						<div
-							class="h-1 w-full border-2 border-violet-500 rounded-full animate-expand -translate-x-100 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-in-out"
-						>
-						</div>
-					</li>
-					<li class="group flex flex-col items-center gap-1">
-						<a href="/projects">Current Projects</a>
-						<div
-							class="h-1 w-full border-2 border-violet-500 rounded-full animate-expand -translate-x-100 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-in-out"
-						>
-						</div>
-					</li>
-					<li class="group flex flex-col items-center gap-1">
-						<a href="/photography/brand-media">Visual Media</a>
-						<div
-							class="h-1 w-full border-2 border-violet-500 rounded-full animate-expand -translate-x-100 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-in-out"
-						>
-						</div>
-					</li>
+	<!-- Desktop nav -->
+	<header class="w-full hidden md:flex items-center justify-center p-4" id="nav">
+		<nav>
+			<ul
+				class="flex flex-row items-center gap-8 text-md font-light text-gray-900"
+			>
+				<li class="group flex flex-col items-center gap-1">
+					<a href="/">Home</a>
+					<div
+						class="h-1 w-full border-2 border-violet-500 rounded-full animate-expand -translate-x-100 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-in-out"
+					>
+					</div>
+				</li>
+				<li class="group flex flex-col items-center gap-1">
+					<a href="/work">What I've Shipped</a>
+					<div
+						class="h-1 w-full border-2 border-violet-500 rounded-full animate-expand -translate-x-100 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-in-out"
+					>
+					</div>
+				</li>
+				<li class="group flex flex-col items-center gap-1">
+					<a href="/projects">Current Projects</a>
+					<div
+						class="h-1 w-full border-2 border-violet-500 rounded-full animate-expand -translate-x-100 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-in-out"
+					>
+					</div>
+				</li>
+				<li class="group flex flex-col items-center gap-1">
+					<a href="/photography/brand-media">Visual Media</a>
+					<div
+						class="h-1 w-full border-2 border-violet-500 rounded-full animate-expand -translate-x-100 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-in-out"
+					>
+					</div>
+				</li>
 
-					<li class="group flex flex-col items-center gap-1">
-						<a href="/about">About</a>
-						<div
-							class="h-1 w-full border-2 border-violet-500 rounded-full animate-expand -translate-x-100 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-in-out"
-						>
-						</div>
-					</li>
-					<li class="group flex flex-col items-center gap-1">
-						<a href="/contact">Contact</a>
-						<div
-							class="h-1 w-full border-2 border-violet-500 rounded-full animate-expand -translate-x-100 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-in-out"
-						>
-						</div>
-					</li>
-				</ul>
-			</nav>
-		</header>
+				<li class="group flex flex-col items-center gap-1">
+					<a href="/about">About</a>
+					<div
+						class="h-1 w-full border-2 border-violet-500 rounded-full animate-expand -translate-x-100 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-in-out"
+					>
+					</div>
+				</li>
+				<li class="group flex flex-col items-center gap-1">
+					<a href="/contact">Contact</a>
+					<div
+						class="h-1 w-full border-2 border-violet-500 rounded-full animate-expand -translate-x-100 opacity-0 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300 ease-in-out"
+					>
+					</div>
+				</li>
+			</ul>
+		</nav>
+	</header>
+
+	<!-- Mobile nav -->
+	<header class="w-full md:hidden flex items-center justify-between px-5 py-4" id="mobile-nav">
+		<a href="/" class="text-lg font-medium text-gray-900">SP</a>
+		<button
+			id="mobile-menu-btn"
+			aria-label="Toggle menu"
+			aria-expanded="false"
+			class="w-10 h-10 flex flex-col items-center justify-center gap-1.5 rounded-lg hover:bg-gray-100 transition-colors"
+		>
+			<span id="bar-1" class="block w-6 h-0.5 bg-gray-900 rounded transition-all duration-300 origin-center"></span>
+			<span id="bar-2" class="block w-6 h-0.5 bg-gray-900 rounded transition-all duration-300 origin-center"></span>
+			<span id="bar-3" class="block w-6 h-0.5 bg-gray-900 rounded transition-all duration-300 origin-center"></span>
+		</button>
+	</header>
+
+	<!-- Mobile menu overlay -->
+	<div
+		id="mobile-menu"
+		class="fixed inset-0 z-50 bg-white/95 backdrop-blur-sm flex flex-col items-center justify-center gap-2 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"
+	>
+		<a href="/" class="mobile-link text-2xl font-light text-gray-900 py-4 px-8 rounded-xl hover:bg-gray-100 transition-colors">Home</a>
+		<a href="/work" class="mobile-link text-2xl font-light text-gray-900 py-4 px-8 rounded-xl hover:bg-gray-100 transition-colors">What I've Shipped</a>
+		<a href="/projects" class="mobile-link text-2xl font-light text-gray-900 py-4 px-8 rounded-xl hover:bg-gray-100 transition-colors">Current Projects</a>
+		<a href="/photography/brand-media" class="mobile-link text-2xl font-light text-gray-900 py-4 px-8 rounded-xl hover:bg-gray-100 transition-colors">Visual Media</a>
+		<a href="/about" class="mobile-link text-2xl font-light text-gray-900 py-4 px-8 rounded-xl hover:bg-gray-100 transition-colors">About</a>
+		<a href="/contact" class="mobile-link text-2xl font-light text-gray-900 py-4 px-8 rounded-xl hover:bg-gray-100 transition-colors">Contact</a>
+	</div>
 		<slot />
 
 		<Footer />
