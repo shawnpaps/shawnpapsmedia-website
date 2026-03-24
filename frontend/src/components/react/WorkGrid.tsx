@@ -123,13 +123,13 @@ export default function WorkGrid({ items }: WorkGridProps) {
 			: items.filter((i) => i.category === activeCategory);
 
 	return (
-		<div className="flex flex-col gap-12">
+		<div className="flex flex-col gap-10 sm:gap-12">
 			{/* Filter row — only shown if at least one category exists */}
 			{presentCategories.length > 0 && (
-				<div className="flex flex-row flex-wrap items-center gap-3">
+				<div className="flex flex-row items-center gap-2 sm:gap-3 overflow-x-auto pb-1">
 					<button
 						onClick={() => setActiveCategory(null)}
-						className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 ${
+						className={`shrink-0 px-4 py-2.5 rounded-full text-sm font-medium transition-colors duration-200 ${
 							activeCategory === null
 								? "bg-violet-600 text-white"
 								: "text-gray-500 border border-gray-200 hover:border-violet-300 hover:text-violet-600"
@@ -146,7 +146,7 @@ export default function WorkGrid({ items }: WorkGridProps) {
 									activeCategory === cat ? null : cat,
 								)
 							}
-							className={`px-4 py-1.5 rounded-full text-sm font-medium transition-colors duration-200 ${
+							className={`shrink-0 px-4 py-2.5 rounded-full text-sm font-medium transition-colors duration-200 ${
 								activeCategory === cat
 									? "bg-violet-600 text-white"
 									: "text-gray-500 border border-gray-200 hover:border-violet-300 hover:text-violet-600"
@@ -159,7 +159,7 @@ export default function WorkGrid({ items }: WorkGridProps) {
 			)}
 
 			{/* Cards grid */}
-			<section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8 pb-24">
+			<section className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 sm:gap-8 pb-20 sm:pb-24">
 				{filtered.length > 0 ? (
 					filtered.map((item, i) => (
 						<WorkCard key={item.href} item={item} index={i} />

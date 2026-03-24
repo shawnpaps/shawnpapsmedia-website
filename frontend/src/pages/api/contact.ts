@@ -1,5 +1,4 @@
 import type { APIRoute } from "astro";
-import { Client } from "@notionhq/client";
 import { Resend } from "resend";
 import dotenv from "dotenv";
 
@@ -7,11 +6,17 @@ dotenv.config({ path: ".env.local" });
 
 export const prerender = false;
 
-const notion = new Client({ auth: process.env.NOTION_API_SECRET });
 const resend = new Resend(process.env.RESEND_API_KEY);
+const MY_EMAIL = "spapineau@spaptechnology.com";
 
-const DATABASE_ID = "3173dfc4d57780beba51fb1128ace7cc";
-const MY_EMAIL = "shawn@shawnpapsmedia.com";
+function escapeHtml(input: string) {
+	return input
+		.replaceAll("&", "&amp;")
+		.replaceAll("<", "&lt;")
+		.replaceAll(">", "&gt;")
+		.replaceAll('"', "&quot;")
+		.replaceAll("'", "&#39;");
+}
 
 export const POST: APIRoute = async ({ request }) => {
 	try {
@@ -24,106 +29,28 @@ export const POST: APIRoute = async ({ request }) => {
 			);
 		}
 
-		// Write to Notion
-		await notion.pages.create({
-			parent: { database_id: DATABASE_ID },
-			properties: {
-				Name: {
-					title: [{ text: { content: name } }],
-				},
-				Email: {
-					email: email,
-				},
-				Phone: {
-					phone_number: phone || null,
-				},
-				Budget: {
-					rich_text: [{ text: { content: budget || "" } }],
-				},
-				Notes: {
-					rich_text: [{ text: { content: notes || "" } }],
-				},
-				"Lead Status": {
-					status: { name: "New" },
-				},
-				"Lead Source": {
-					select: { name: "Website" },
-				},
-			},
-		});
+		const safeName = escapeHtml(name);
+		const safeEmail = escapeHtml(email);
+		const safePhone = escapeHtml(phone || "-");
+		const safeBudget = escapeHtml(budget || "-");
+		const safeNotes = escapeHtml(notes || "-");
 
-		// Send notification email to me
+		// Send lead email
 		await resend.emails.send({
 			from: "Portfolio Contact <onboarding@resend.dev>",
 			to: MY_EMAIL,
-			subject: `New lead from ${name}`,
+			subject: `***NEW LEAD***: ${name}`,
 			html: `
-				<div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #111;">
-					<h2 style="color: #7C3AED; margin-bottom: 4px;">New contact form submission</h2>
-					<p style="color: #888; font-size: 14px; margin-top: 0;">Via your portfolio website</p>
-					<hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
+				<div style="font-family: sans-serif; max-width: 640px; margin: 0 auto; color: #111;">
+					<h2 style="margin-bottom: 10px;">***NEW LEAD***: ${safeName}</h2>
+					<p style="margin: 0 0 18px; color: #666;">Submitted from your portfolio contact form.</p>
 					<table style="width: 100%; border-collapse: collapse; font-size: 15px;">
-						<tr>
-							<td style="padding: 8px 0; color: #888; width: 100px;">Name</td>
-							<td style="padding: 8px 0; font-weight: 600;">${name}</td>
-						</tr>
-						<tr>
-							<td style="padding: 8px 0; color: #888;">Email</td>
-							<td style="padding: 8px 0;">${email}</td>
-						</tr>
-						${
-							phone
-								? `
-						<tr>
-							<td style="padding: 8px 0; color: #888;">Phone</td>
-							<td style="padding: 8px 0;">${phone}</td>
-						</tr>`
-								: ""
-						}
-						${
-							budget
-								? `
-						<tr>
-							<td style="padding: 8px 0; color: #888;">Budget</td>
-							<td style="padding: 8px 0;">${budget}</td>
-						</tr>`
-								: ""
-						}
-						${
-							notes
-								? `
-						<tr>
-							<td style="padding: 8px 0; color: #888; vertical-align: top;">Notes</td>
-							<td style="padding: 8px 0;">${notes}</td>
-						</tr>`
-								: ""
-						}
+						<tr><td style="padding: 8px 0; color: #666; width: 120px;">Name</td><td style="padding: 8px 0;">${safeName}</td></tr>
+						<tr><td style="padding: 8px 0; color: #666;">Email</td><td style="padding: 8px 0;">${safeEmail}</td></tr>
+						<tr><td style="padding: 8px 0; color: #666;">Phone</td><td style="padding: 8px 0;">${safePhone}</td></tr>
+						<tr><td style="padding: 8px 0; color: #666;">Budget</td><td style="padding: 8px 0;">${safeBudget}</td></tr>
+						<tr><td style="padding: 8px 0; color: #666; vertical-align: top;">Notes</td><td style="padding: 8px 0; white-space: pre-wrap;">${safeNotes}</td></tr>
 					</table>
-					<hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
-					<a href="https://notion.so" style="display: inline-block; padding: 10px 20px; background: #7C3AED; color: white; border-radius: 999px; text-decoration: none; font-size: 14px;">
-						View in Notion
-					</a>
-				</div>
-			`,
-		});
-
-		// Send confirmation email to the user
-		await resend.emails.send({
-			from: "Shawn Papineau <onboarding@resend.dev>",
-			to: email,
-			subject: "Got your message — I'll be in touch soon.",
-			html: `
-				<div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; color: #111;">
-					<h2 style="color: #7C3AED;">Hey ${name.split(" ")[0]}, thanks for reaching out.</h2>
-					<p style="font-size: 16px; line-height: 1.7; color: #444;">
-						I got your message and I'll get back to you as soon as I can — usually within a day or two.
-					</p>
-					<p style="font-size: 16px; line-height: 1.7; color: #444;">
-						In the meantime, feel free to take a look at some of my recent work at
-						<a href="https://shawnpapineau.com/work" style="color: #7C3AED;">shawnpapineau.com/work</a>.
-					</p>
-					<hr style="border: none; border-top: 1px solid #eee; margin: 24px 0;" />
-					<p style="font-size: 14px; color: #888;">— Shawn</p>
 				</div>
 			`,
 		});

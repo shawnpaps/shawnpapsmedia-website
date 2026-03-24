@@ -56,7 +56,7 @@ export default function MCPBot() {
 						onChange={(e) => setMessage(e.target.value)}
 						placeholder="I need a web app..."
 						disabled={loading}
-						className="peer mt-0.5 bg-white/10 backdrop-blur-sm rounded-full p-5 w-full min-w-[500px] lg:text-2xl border border-gray-300 shadow-sm sm:text-sm dark:border-gray-600 dark:bg-gray-900 dark:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
+						className="peer mt-0.5 bg-white/10 backdrop-blur-sm rounded-full px-4 py-4 sm:px-5 sm:py-5 w-full text-base sm:text-lg lg:text-2xl border border-gray-300 shadow-sm dark:border-gray-600 dark:bg-gray-900 dark:text-white disabled:opacity-50 disabled:cursor-not-allowed transition-opacity"
 					/>
 					{loading && (
 						<span className="absolute right-5 top-1/2 -translate-y-1/2">
@@ -91,7 +91,7 @@ export default function MCPBot() {
 			{error && <p className="text-sm text-red-500">{error}</p>}
 
 			{reply && (
-				<div className="w-full max-w-xl rounded-2xl border border-gray-200 bg-white/10 backdrop-blur-sm px-6 py-4 shadow-sm text-gray-800 text-base leading-relaxed animate-fade-in">
+				<div className="w-full max-w-xl rounded-2xl border border-gray-200 bg-white/10 backdrop-blur-sm px-4 sm:px-6 py-4 shadow-sm text-gray-800 text-sm sm:text-base leading-relaxed animate-fade-in">
 					{reply}
 				</div>
 			)}

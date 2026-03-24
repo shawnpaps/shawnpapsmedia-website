@@ -217,7 +217,7 @@ export default function ContactForm() {
 			<button
 				type="submit"
 				disabled={loading}
-				className="self-start px-8 py-3 rounded-full bg-violet-600 text-white text-sm font-medium hover:bg-violet-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 flex items-center gap-2"
+				className="w-full sm:w-auto justify-center self-start px-8 py-3.5 rounded-full bg-violet-600 text-white text-sm font-medium hover:bg-violet-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors duration-200 flex items-center gap-2"
 			>
 				{loading ? (
 					<>
