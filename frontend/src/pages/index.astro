@@ -6,7 +6,11 @@ import BadgeContainer from "../components/BadgeContainer.astro";
 import PhotoMarquee from "../components/PhotoMarquee.astro";
 import ServicesPreview from "../components/react/ServicesPreview.tsx";
 
-const CMS_BASE = import.meta.env.PUBLIC_CMS_BASE;
+const CMS_BASE = import.meta.env.PUBLIC_CMS_BASE?.replace(/\/$/, "");
+const HERO_IMAGE_FILE = "Screenshot%202026-02-02%20at%201.37.00%20PM.jpg";
+const heroImageSrc = CMS_BASE
+	? `${CMS_BASE}/api/media/file/${HERO_IMAGE_FILE}`
+	: "https://placehold.co/1600x900?text=Shawn+Paps+Media";
 console.log("[index.astro] CMS_BASE =", CMS_BASE);
 
 let marqueePhotos: {
@@ -26,38 +30,49 @@ interface WorkItem {
 
 let workItems: WorkItem[] = [];
 
-try {
-	const mediaRes = await fetch(`${CMS_BASE}/api/media?limit=100&depth=0`);
-	const mediaData = await mediaRes.json();
-	marqueePhotos = (mediaData?.docs ?? [])
-		.filter((d: any) => d.mimeType?.startsWith("image/"))
-		.map((d: any) => ({
-			url: d.url,
-			alt: d.alt ?? "",
-			width: d.width,
-			height: d.height,
-		}));
-	console.log("[index.astro] marqueePhotos fetched:", marqueePhotos.length);
-} catch (e) {
-	console.error("Failed to fetch media for marquee:", e);
+if (CMS_BASE) {
+	try {
+		const mediaRes = await fetch(`${CMS_BASE}/api/media?limit=100&depth=0`);
+		if (!mediaRes.ok)
+			throw new Error(`Media fetch failed: ${mediaRes.status}`);
+		const mediaData = await mediaRes.json();
+		marqueePhotos = (mediaData?.docs ?? [])
+			.filter((d: any) => d.mimeType?.startsWith("image/"))
+			.map((d: any) => ({
+				url: d.url,
+				alt: d.alt ?? "",
+				width: d.width,
+				height: d.height,
+			}));
+		console.log(
+			"[index.astro] marqueePhotos fetched:",
+			marqueePhotos.length,
+		);
+	} catch (e) {
+		console.error("Failed to fetch media for marquee:", e);
+	}
 }
 
-try {
-	const workRes = await fetch(
-		`${CMS_BASE}/api/case-studies?limit=20&depth=1`,
-	);
-	const workData = await workRes.json();
-	workItems = (workData?.docs ?? []).map((d: any) => ({
-		title: d.title ?? "Untitled",
-		client: d.client ?? "",
-		summary: d.summary ?? "",
-		coverImage: d.coverImage?.url
-			? `${CMS_BASE}${d.coverImage.url}`
-			: "https://placehold.co/288x192",
-		slug: d.slug ?? d.id,
-	}));
-} catch (e) {
-	console.error("Failed to fetch case studies:", e);
+if (CMS_BASE) {
+	try {
+		const workRes = await fetch(
+			`${CMS_BASE}/api/case-studies?limit=20&depth=1`,
+		);
+		if (!workRes.ok)
+			throw new Error(`Case studies fetch failed: ${workRes.status}`);
+		const workData = await workRes.json();
+		workItems = (workData?.docs ?? []).map((d: any) => ({
+			title: d.title ?? "Untitled",
+			client: d.client ?? "",
+			summary: d.summary ?? "",
+			coverImage: d.coverImage?.url
+				? `${CMS_BASE}${d.coverImage.url}`
+				: "https://placehold.co/288x192",
+			slug: d.slug ?? d.id,
+		}));
+	} catch (e) {
+		console.error("Failed to fetch case studies:", e);
+	}
 }
 
 // Fallback work items if CMS fetch returns nothing
@@ -108,118 +123,37 @@ if (workItems.length === 0) {
 ---
 
 <BaseLayout>
-	<main class="flex flex-col items-center min-h-screen">
-		<!-- Hero -->
-		<section
-			class="flex flex-col lg:flex-row items-center lg:items-start justify-between gap-10 w-full px-6 sm:px-12 lg:px-20 pt-16 pb-20"
-		>
-			<div
-				class="flex flex-col sm:flex-row items-center sm:items-start gap-8"
-			>
-				<div
-					class="w-48 h-48 sm:w-64 sm:h-64 rounded-full overflow-hidden shrink-0"
-				>
-					<img
-						class="w-full h-full object-cover"
-						src={`${CMS_BASE}/api/media/file/shawn-camera`}
-						alt="Shawn Papineau — photographer,
- videographer, and web developer"
-						loading="eager"
-					/>
-				</div>
-				<div class="max-w-lg text-center sm:text-left">
-					<h1 class="text-5xl lg:text-6xl font-semibold">
-						We build the web presence.<br />We shoot it too.
-					</h1>
-					<p class="text-xl lg:text-2xl font-light mt-4">
-						Shawn Paps Media builds high-performance websites and web
-						apps for brands ready to take their digital presence
-						seriously — and when the visuals need to match, we
-						handle that too.
-					</p>
-				</div>
-			</div>
-			<div class="flex flex-col items-center lg:items-end gap-4 shrink-0">
-				<div
-					class="p-2 flex flex-row items-center gap-2 bg-gray-100 rounded-full w-fit px-4 mb-2"
-				>
-					<div class="w-2 animate-pulse h-2 bg-red-600 rounded-full">
-					</div>
-					<p>Tampa, FL</p>
-				</div>
-				<div
-					id="badges"
-					class="flex flex-wrap justify-center lg:justify-end gap-2"
-				>
-					<BadgeContainer />
-				</div>
-			</div>
-		</section>
+	<main class="flex flex-col items-center min-h-screen max-w-screen">
+		<section class="w-screen h-screen p-10">
+			<div class="flex flex-row items-center justify-between w-full">
+				<figure>
+					<img class="w-144" src="sudo_logo.png" alt="" />
+				</figure>
+				<nav class="flex flex-col gap-4 text-2xl">
+					<a href="/work">Things We've Shipped</a>
+					<a href="/projects">Current Builds</a>
+					<a href="/media">Brand Media</a>
 
-		<!-- MCP Bot section with marquee as background -->
-		<section
-			class="relative w-screen min-h-[40em] flex justify-center items-center"
-		>
-			<!-- Marquee background -->
-			<div class="absolute inset-0 z-0">
-				<PhotoMarquee photos={marqueePhotos} cmsBase={CMS_BASE} />
+					<a href="/about">About</a>
+				</nav>
 			</div>
-			<!-- Overlay -->
-			<div class="absolute inset-0 z-10 bg-white/30"></div>
-			<!-- Content -->
-			<div
-				class="relative z-20 flex flex-col items-center gap-4 py-40 px-6 sm:px-20 justify-center bg-white/70 rounded-2xl w-fit mx-auto hover:bg-white transition-all ease-linear duration-200"
-			>
-				<h2 class="text-4xl font-medium text-center">
-					Ask me anything
-				</h2>
-				<p class="text-gray-600 text-base font-light">
-					What we build, what we shoot, how it works — ask anything.
-				</p>
-				<MCPBot client:load />
-			</div>
-		</section>
-
-		<!-- Services preview -->
-		<section class="w-screen px-6 sm:px-20 py-20 border-t border-gray-100">
-			<div class="flex flex-col gap-4 mb-10">
-				<span
-					class="text-xs font-medium text-violet-600 uppercase tracking-widest"
-					>What we do</span
-				>
-				<h2 class="text-4xl font-semibold text-gray-900">
-					Built to perform. Shot to impress.
-				</h2>
-			</div>
-			<ServicesPreview
-				cmsBase={CMS_BASE}
-				allPhotos={marqueePhotos}
-				client:load
-			/>
-		</section>
-
-		<!-- Work showcase -->
-		<section class="w-screen border-t border-gray-100 overflow-visible">
-			<WorkShowcase items={workItems} />
-		</section>
-
-		<!-- Available for work CTA -->
-		<section class="w-full px-6 sm:px-20 py-20 border-t border-gray-100">
-			<div
-				class="max-w-lg mx-auto text-center flex flex-col items-center gap-6"
-			>
-				<h2 class="text-4xl font-light">One partner. No handoffs.</h2>
-				<p class="text-xl font-light text-gray-500">
-					Most dev shops hand you a site and tell you to figure out
-					the content. We handle the builds and the visuals — so you
-					deal with one person.
-				</p>
-				<a
-					href="/contact"
-					class="px-8 py-4 rounded-full bg-violet-600 hover:bg-violet-700 text-white text-sm font-medium transition-colors duration-200"
-				>
-					Let's talk →
-				</a>
+			<div class="flex flex-row gap-16 items-center justify-between">
+				<div class="flex flex-row gap-4">
+					<figure class="max-w-72">
+						<img src="sudo_logo.png" alt="" />
+					</figure>
+					<figure class="max-w-72">
+						<img src="sudo_logo.png" alt="" />
+					</figure>
+					<figure class="max-w-72">
+						<img src="sudo_logo.png" alt="" />
+					</figure>
+				</div>
+				<div class="flex flex-row gap-4">
+					<p>Web Design</p>
+					<p>Web Development</p>
+					<p>Brand Media</p>
+				</div>
 			</div>
 		</section>
 	</main>
