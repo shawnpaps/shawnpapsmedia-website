@@ -5,48 +5,48 @@ const services = [
 	{
 		label: "Web Development",
 		items: [
-			"Websites & landing pages",
-			"Full-stack web apps",
-			"CMS & e-commerce builds",
-			"API & platform integrations",
+			"Marketing sites and web apps",
+			"CMS implementations",
+			"E-commerce architecture",
+			"API and platform integrations",
 		],
 	},
 	{
-		label: "Photo & Video",
+		label: "Web Design",
 		items: [
-			"Brand & lifestyle photography",
-			"Product & detail shots",
-			"Event & launch coverage",
-			"Music & concert photography",
+			"UX and interaction design",
+			"Page and conversion design",
+			"Design systems",
+			"Prototype and handoff assets",
 		],
 	},
 	{
-		label: "Creative Technology",
+		label: "Consulting + Creative Tech",
 		items: [
-			"Interactive experiences",
-			"Custom tooling & scripts",
-			"Motion & animation",
-			"AI-powered features",
+			"Technical discovery and audits",
+			"Architecture and roadmap planning",
+			"AI-assisted workflow design",
+			"Interactive product experiments",
 		],
 	},
 ];
 
 const clients = [
 	{
-		type: "Small Businesses",
-		desc: "Owner-operated businesses that want a real developer, not a template — and a long-term partner who can also handle the visuals.",
+		type: "Small Teams",
+		desc: "Lean teams that need senior-level development and design support without hiring a full internal team.",
 	},
 	{
 		type: "Startups & Founders",
-		desc: "Early-stage teams who need a site that punches above their weight — built fast, built right, and looking sharp from day one.",
+		desc: "Founders moving quickly who need product-minded execution across website, product UX, and engineering.",
 	},
 	{
-		type: "Creative Agencies",
-		desc: "Agencies that need a technical partner who can also shoot — no need to manage a separate photographer and developer.",
+		type: "Agencies",
+		desc: "Creative and marketing agencies that need a technical partner to deliver custom web experiences for clients.",
 	},
 	{
-		type: "Artists & Musicians",
-		desc: "Artists who want a web presence as distinctive as their sound — plus the press shots and content to back it up.",
+		type: "Product Organizations",
+		desc: "Product and ops teams that need help modernizing legacy systems or launching new internal tools.",
 	},
 ];
 ---
@@ -61,35 +61,33 @@ const clients = [
 				<span
 					class="text-xs font-medium text-violet-600 uppercase tracking-widest"
 				>
-					Shawn Paps Media — Tampa, FL
+					sudo create
 				</span>
 				<h1 class="text-6xl font-semibold text-gray-900 leading-tight">
-					We build the web presence.<br />We shoot it too.
+					Small agency. Senior execution.
 				</h1>
 				<p class="text-xl font-light text-gray-500 leading-relaxed">
-					Most dev shops hand you a site and tell you to figure out
-					the content. We're different — Shawn Papineau brings 7+
-					years of full-stack engineering alongside professional
-					photography and video, so your brand gets a digital
-					presence that actually looks like it belongs there.
+					sudo create is a focused web development agency that combines
+					engineering, design, and consulting to help teams launch and
+					improve high-impact digital products.
 				</p>
 				<p class="text-xl font-light text-gray-500 leading-relaxed">
-					Tampa-based, working with brands everywhere. One partner.
-					No handoffs. From the first line of code to the final
-					frame.
+					We stay intentionally small so clients get direct
+					collaboration, fast decisions, and work that reflects the
+					actual goals of the business.
 				</p>
 				<div class="flex flex-row items-center gap-4 mt-2">
 					<a
 						href="/contact"
 						class="px-6 py-3 rounded-full bg-violet-600 text-white text-sm font-medium hover:bg-violet-700 transition-colors duration-200"
 					>
-						Let's talk
+						Start a project
 					</a>
 					<a
 						href="/work"
 						class="px-6 py-3 rounded-full border border-gray-200 text-gray-700 text-sm font-medium hover:border-violet-300 hover:text-violet-600 transition-colors duration-200"
 					>
-						See the work
+						View case studies
 					</a>
 				</div>
 			</div>
@@ -99,7 +97,7 @@ const clients = [
 			>
 				<img
 					src={`${import.meta.env.PUBLIC_CMS_BASE ?? "http://localhost:3000"}/api/media/file/shawn_computer`}
-					alt="Shawn Paps Media"
+					alt="sudo create"
 					class="w-full h-full object-cover"
 				/>
 			</div>
@@ -116,20 +114,18 @@ const clients = [
 					The difference
 				</span>
 				<h2 class="text-4xl font-semibold text-gray-900 leading-tight">
-					Most dev shops stop at the code. We don't.
+					Built like a partner, not a vendor.
 				</h2>
 			</div>
 			<div class="flex flex-col gap-6 max-w-xl pt-1">
 				<p class="text-lg font-light text-gray-500 leading-relaxed">
-					Most dev shops hand you a finished site and tell you to go
-					find a photographer. We close that gap — writing clean code
-					and producing the visual content from the same place. Your
-					brand gets a digital presence where everything actually
-					fits together, because it was made together.
+					We combine technical depth with design thinking so product
+					and marketing teams can move from idea to launch with fewer
+					handoffs and less rework.
 				</p>
 				<p class="text-lg font-light text-gray-500 leading-relaxed">
-					One partner, no handoffs. That's not just a tagline — it's
-					how we actually work.
+					Our process is collaborative, practical, and focused on
+					shipping work that performs in production.
 				</p>
 				<!-- Signature offer callout -->
 				<div
@@ -141,12 +137,11 @@ const clients = [
 						How we work
 					</p>
 					<h3 class="text-xl font-semibold text-gray-900 mb-2">
-						Build → Shoot → Launch
+						Discover -> Build -> Improve
 					</h3>
 					<p class="text-sm font-light text-gray-600 leading-relaxed">
-						We take projects from strategy through development,
-						visual production, and launch. You deal with one person.
-						No agency overhead. No vendor management. Just results.
+						We define priorities, ship the right solution, and keep
+						iterating with your team after launch.
 					</p>
 				</div>
 			</div>
@@ -160,7 +155,7 @@ const clients = [
 				>
 					Services
 				</span>
-				<h2 class="text-4xl font-semibold text-gray-900">What we do.</h2>
+				<h2 class="text-4xl font-semibold text-gray-900">What we do</h2>
 			</div>
 
 			<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
@@ -193,7 +188,7 @@ const clients = [
 					Who we work with
 				</span>
 				<h2 class="text-4xl font-semibold text-gray-900">
-					Serious brands. Real partners.
+					Teams we work best with
 				</h2>
 			</div>
 
@@ -215,8 +210,8 @@ const clients = [
 			</div>
 
 			<p class="text-base font-light text-gray-400 italic max-w-xl">
-				Clients at an inflection point — relaunching, rebranding, or
-				ready to finally build something that performs.
+				Best fit: teams with clear goals, tight timelines, and a need
+				for practical technical leadership.
 			</p>
 		</section>
 
@@ -229,17 +224,13 @@ const clients = [
 					class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse shrink-0"
 				>
 				</div>
-				<p class="text-sm font-medium text-gray-700">
-					Based in Tampa, FL
-				</p>
+				<p class="text-sm font-medium text-gray-700">U.S.-based</p>
 			</div>
 			<div class="w-px h-4 bg-gray-200"></div>
-			<p class="text-sm font-light text-gray-500">
-				Tampa-based · work everywhere
-			</p>
+			<p class="text-sm font-light text-gray-500">Remote-first</p>
 			<div class="w-px h-4 bg-gray-200"></div>
 			<p class="text-sm font-light text-gray-500">
-				Open to contract, freelance, and retainer work
+				Available for project and retainer engagements
 			</p>
 		</section>
 
@@ -248,31 +239,31 @@ const clients = [
 			<span
 				class="text-xs font-medium text-violet-600 uppercase tracking-widest"
 			>
-				Let's build something
+				Ready to start?
 			</span>
 			<h2
 				class="text-5xl font-semibold text-gray-900 max-w-xl leading-tight"
 			>
-				Ready to take your digital presence seriously?
+				Let's scope your next build.
 			</h2>
 			<p
 				class="text-xl font-light text-gray-500 max-w-lg leading-relaxed"
 			>
-				Tell us what you're building. We'll handle the rest — code,
-				content, and everything in between.
+				Share what you need to launch or improve, and we'll propose a
+				clear plan to get it done.
 			</p>
 			<div class="flex flex-row items-center gap-4 mt-2">
 				<a
 					href="/contact"
 					class="px-8 py-4 rounded-full bg-violet-600 text-white text-base font-medium hover:bg-violet-700 transition-colors duration-200"
 				>
-					Start here
+					Start now
 				</a>
 				<a
 					href="/work"
 					class="px-8 py-4 rounded-full border border-gray-200 text-gray-700 text-base font-medium hover:border-violet-300 hover:text-violet-600 transition-colors duration-200"
 				>
-					See the work
+					View work
 				</a>
 			</div>
 		</section>

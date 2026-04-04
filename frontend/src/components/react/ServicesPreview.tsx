@@ -32,7 +32,7 @@ interface Props {
 }
 
 export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
-	const [active, setActive] = useState("photography");
+	const [active, setActive] = useState("web-development");
 	const [fading, setFading] = useState(false);
 	const [muxAssets, setMuxAssets] = useState<MuxAsset[]>([]);
 
@@ -53,12 +53,12 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 
 	const services: Service[] = [
 		{
-			id: "photography",
+			id: "web-development",
 			label: "Web Development",
-			headline: "Built to perform, not just look good.",
+			headline: "Fast, reliable builds for real business goals.",
 			description:
-				"Full-stack web development — websites, web apps, CMS builds, e-commerce, and custom integrations. Most dev shops hand you a site and tell you to figure out the content. We handle both.",
-			cta: "See the work",
+				"Custom websites, web apps, CMS implementations, and integrations built for speed, clarity, and long-term maintainability.",
+			cta: "View web work",
 			href: "/work",
 			accent: "violet",
 			photos: photosByKeyword(["Lakeview", "Haggard", "BrandHyve", "RJ"]).slice(
@@ -67,26 +67,40 @@ export default function ServicesPreview({ cmsBase, allPhotos }: Props) {
 			),
 		},
 		{
-			id: "video",
-			label: "Photo & Video",
-			headline: "The visuals that make the site work.",
+			id: "design",
+			label: "Web Design",
+			headline: "Interfaces built to guide, not distract.",
 			description:
-				"We're the dev shop that can also handle the photography and video — so your brand gets a digital presence that actually looks like it belongs there. One partner, no handoffs.",
-			cta: "See the work",
-			href: "/photography/brand-media",
+				"Design systems, page architecture, interaction design, and visual direction that turn business goals into clear user experiences.",
+			cta: "Explore design projects",
+			href: "/work",
 			accent: "amber",
-			photos: photosByKeyword(["Dark Horse", "Lakeview", "RJ"]).slice(0, 4),
+			photos: photosByKeyword(["BrandHyve", "Lakeview", "RJ", "Avery"]).slice(
+				0,
+				4,
+			),
 		},
 		{
-			id: "web",
-			label: "Creative Technology",
-			headline: "Where code meets craft.",
+			id: "consulting",
+			label: "Software Consulting",
+			headline: "Senior technical guidance without agency overhead.",
 			description:
-				"Interactive experiences, AI-powered tools, custom integrations, and the kind of work that sits at the edge of what the web can do — built by someone who actually ships.",
-			cta: "See projects",
-			href: "/projects",
+				"Architecture reviews, delivery planning, performance audits, and hands-on implementation support for teams that need experienced technical direction.",
+			cta: "Discuss your roadmap",
+			href: "/contact",
 			accent: "emerald",
-			photos: photosByKeyword(["Shawn", "BrandHyve", "Avery"]).slice(0, 4),
+			photos: photosByKeyword(["Shawn", "Avery", "Lakeview"]).slice(0, 4),
+		},
+		{
+			id: "video",
+			label: "Creative Technology",
+			headline: "Interactive ideas turned into working prototypes.",
+			description:
+				"From experimental interfaces to AI-assisted workflows, we help teams explore and ship creative technology that adds real value.",
+			cta: "See creative tech",
+			href: "/projects",
+			accent: "violet",
+			photos: photosByKeyword(["Shawn", "BrandHyve", "Dark Horse"]).slice(0, 4),
 		},
 	];
 

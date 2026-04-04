@@ -37,13 +37,13 @@ export const POST: APIRoute = async ({ request }) => {
 
 		// Send lead email
 		await resend.emails.send({
-			from: "Portfolio Contact <onboarding@resend.dev>",
+			from: "sudo create Contact <onboarding@resend.dev>",
 			to: MY_EMAIL,
-			subject: `***NEW LEAD***: ${name}`,
+			subject: `New sudo create lead: ${name}`,
 			html: `
 				<div style="font-family: sans-serif; max-width: 640px; margin: 0 auto; color: #111;">
-					<h2 style="margin-bottom: 10px;">***NEW LEAD***: ${safeName}</h2>
-					<p style="margin: 0 0 18px; color: #666;">Submitted from your portfolio contact form.</p>
+					<h2 style="margin-bottom: 10px;">New lead: ${safeName}</h2>
+					<p style="margin: 0 0 18px; color: #666;">Submitted from the sudo create website contact form.</p>
 					<table style="width: 100%; border-collapse: collapse; font-size: 15px;">
 						<tr><td style="padding: 8px 0; color: #666; width: 120px;">Name</td><td style="padding: 8px 0;">${safeName}</td></tr>
 						<tr><td style="padding: 8px 0; color: #666;">Email</td><td style="padding: 8px 0;">${safeEmail}</td></tr>

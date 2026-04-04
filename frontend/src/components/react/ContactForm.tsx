@@ -17,10 +17,10 @@ const initialState: FormState = {
 };
 
 const budgetOptions = [
-	"Under $1,000",
-	"$1,000 – $5,000",
-	"$5,000 – $15,000",
-	"$15,000+",
+	"Under $5,000",
+	"$5,000 - $15,000",
+	"$15,000 - $35,000",
+	"$35,000+",
 	"Let's talk",
 ];
 
@@ -85,17 +85,17 @@ export default function ContactForm() {
 					</svg>
 				</div>
 				<h3 className="text-2xl font-semibold text-gray-900">
-					Message sent!
+					Thanks, you're in.
 				</h3>
 				<p className="text-base font-light text-gray-500 max-w-sm">
-					Thanks for reaching out. I'll get back to you within a day or
-					two. Check your inbox for a confirmation.
+					Thanks for reaching out to sudo create. We'll follow up soon
+					with next steps.
 				</p>
 				<button
 					onClick={() => setSuccess(false)}
 					className="mt-2 text-sm text-violet-600 hover:underline"
 				>
-					Send another message
+					Send another request
 				</button>
 			</div>
 		);
@@ -178,7 +178,7 @@ export default function ContactForm() {
 						onChange={handleChange}
 						className="w-full rounded-xl border border-gray-200 bg-white/60 px-4 py-3 text-sm text-gray-900 focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-100 transition appearance-none"
 					>
-						<option value="">Select a range...</option>
+						<option value="">Select budget range...</option>
 						{budgetOptions.map((opt) => (
 							<option key={opt} value={opt}>
 								{opt}
@@ -194,7 +194,7 @@ export default function ContactForm() {
 					htmlFor="notes"
 					className="text-sm font-medium text-gray-700"
 				>
-					Anything I should know?{" "}
+					Project details{" "}
 					<span className="text-gray-400 font-light">(optional)</span>
 				</label>
 				<textarea
@@ -203,7 +203,7 @@ export default function ContactForm() {
 					rows={5}
 					value={form.notes}
 					onChange={handleChange}
-					placeholder="Tell me about your project, timeline, goals — whatever feels relevant."
+					placeholder="Share your goals, timeline, current stack, and what you need help with."
 					className="w-full rounded-xl border border-gray-200 bg-white/60 px-4 py-3 text-sm text-gray-900 placeholder-gray-400 focus:border-violet-400 focus:outline-none focus:ring-2 focus:ring-violet-100 transition resize-none"
 				/>
 			</div>
@@ -241,10 +241,10 @@ export default function ContactForm() {
 								d="M4 12a8 8 0 018-8v8H4z"
 							/>
 						</svg>
-						Sending...
+						Sending request...
 					</>
 				) : (
-					"Send message"
+					"Submit request"
 				)}
 			</button>
 		</form>

@@ -77,7 +77,7 @@ function WorkCard({ item, index }: WorkCardProps) {
 					</p>
 
 					<span className="mt-3 inline-flex items-center gap-1 text-xs font-medium text-violet-600">
-						View case study
+						Open case study
 						<svg
 							xmlns="http://www.w3.org/2000/svg"
 							className="size-3"
@@ -166,7 +166,7 @@ export default function WorkGrid({ items }: WorkGridProps) {
 					))
 				) : (
 					<p className="col-span-full text-gray-400 font-light text-lg py-16 text-center">
-						No projects in this category yet.
+						No published work in this category yet.
 					</p>
 				)}
 			</section>
